@@ -39,10 +39,10 @@ export function Navigation() {
      logo="/adot_logo.jpg"
       logoAlt="Company Logo"
       items={items}
-      baseColor="#fff"
-      menuColor="#000"
-      buttonBgColor="#111"
-      buttonTextColor="#fff"
+      baseColor="#000000"
+      menuColor="#ffffff"
+      buttonBgColor="#333333"
+      buttonTextColor="#ffffff"
       ease="power3.out"
     />
   )

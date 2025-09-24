@@ -156,9 +156,10 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   return (
-    <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
-    >
+    <div className="w-full flex justify-center sticky top-4 z-[99]">
+      <div
+        className={`card-nav-container w-[90%] max-w-[800px] ${className}`}
+      >
       <nav
         ref={navRef}
         className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
@@ -231,6 +232,7 @@ const CardNav: React.FC<CardNavProps> = ({
           ))}
         </div>
       </nav>
+      </div>
     </div>
   );
 };

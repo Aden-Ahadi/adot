@@ -4,7 +4,7 @@ import { Star } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="w-full max-w-6xl mx-auto px-6 py-16">
-      <div className="relative bg-background rounded-3xl p-8 md:p-12 overflow-hidden">
+      <div className="relative text-black">
         {/* Decorative elements */}
         <div className="absolute top-8 left-12 w-8 h-8 text-accent">
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
@@ -25,7 +25,7 @@ export function HeroSection() {
         </div>
 
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
             Empowering Brands
             <br />
             Through Creative Solutions
@@ -35,7 +35,7 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-16">
           {/* Left content - paragraph and button */}
           <div className="space-y-6 lg:justify-self-end lg:text-right">
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-sm lg:ml-auto">
+            <p className="text-black text-base md:text-lg leading-relaxed max-w-sm lg:ml-auto">
               Every brand deserves exceptional branding, web design, and digital experiences that connect with your
               audience and drive growth. Let's create something extraordinary together.
             </p>
@@ -75,8 +75,8 @@ export function HeroSection() {
                   <Star key={i} className="w-4 h-4 fill-accent text-accent" />
                 ))}
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground text-center lg:text-left">10 Years</div>
-              <div className="text-sm text-muted-foreground text-center lg:text-left">Experience</div>
+              <div className="text-2xl md:text-3xl font-bold text-black text-center lg:text-left">10 Years</div>
+              <div className="text-sm text-black text-center lg:text-left">Experience</div>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ export function HeroSection() {
           </Button>
           <Button
             variant="outline"
-            className="bg-transparent hover:bg-muted text-foreground rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium border-2 border-muted-foreground/20"
+            className="bg-transparent hover:bg-gray-100 text-black rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium border-2 border-black/20"
           >
             View Portfolio
           </Button>
