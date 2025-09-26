@@ -36,7 +36,7 @@ export function Navigation() {
   ];
   return (
   <CardNav
-     logo="/adot_logo.jpg"
+     logo="/adot_logo.png"
       logoAlt="Company Logo"
       items={items}
       baseColor="#000000"
