@@ -1,95 +1,41 @@
 import { Button } from "@/components/ui/button"
-import { Star } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import TextType from "@/components/TextType"
 
 export function HeroSection() {
   return (
-    <section className="w-full max-w-6xl mx-auto px-6 py-16">
-      <div className="relative text-black">
-        {/* Decorative elements */}
-        <div className="absolute top-8 left-12 w-8 h-8 text-accent">
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
+    <section className="w-full min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-[1.1] sm:leading-[1.05] tracking-tight">
+          Get powerful digital experiences
+          <br />
+          your customers{" "}
+          <TextType 
+            text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
+            as="span"
+            typingSpeed={100}
+            pauseDuration={2000}
+            showCursor={true}
+            cursorCharacter="|"
+            loop={true}
+            className="inline !text-black font-normal"
+            style={{ color: '#000000' }}
+          />.
+        </h1>
+
+        <div className="space-y-1 max-w-xl mx-auto px-2 sm:px-0">
+          <p className="text-sm sm:text-base md:text-lg text-black/80 font-normal">
+            We craft innovative software, web, and mobile solutions,
+          </p>
+          <p className="text-sm sm:text-base md:text-lg text-black/80 font-normal">
+            you focus on growing your business.
+          </p>
         </div>
 
-        <div className="absolute top-20 right-20 w-6 h-6 text-accent">
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        </div>
-
-        <div className="absolute bottom-32 left-8 w-4 h-4 text-accent">
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        </div>
-
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
-            Empowering Brands
-            <br />
-            Through Creative Solutions
-          </h1>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-16">
-          {/* Left content - paragraph and button */}
-          <div className="space-y-6 lg:justify-self-end lg:text-right">
-            <p className="text-black text-base md:text-lg leading-relaxed max-w-sm lg:ml-auto">
-              Every brand deserves exceptional branding, web design, and digital experiences that connect with your
-              audience and drive growth. Let's create something extraordinary together.
-            </p>
-
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium border-2 hover:bg-muted bg-transparent"
-            >
-              Discover Your Brand
-            </Button>
-          </div>
-
-          {/* Center - Professional woman image */}
-          <div className="relative flex items-center justify-center order-first lg:order-none">
-            <div className="relative">
-              <img
-                src="/professional-woman-in-business-attire-with-glasses.jpg"
-                alt="Professional woman representing Creatix team"
-                className="w-64 h-80 md:w-80 md:h-96 object-cover rounded-2xl"
-              />
-
-              {/* Decorative curved line */}
-              <div className="absolute -bottom-8 -left-8">
-                <svg width="60" height="40" viewBox="0 0 60 40" fill="none" className="text-muted-foreground">
-                  <path d="M2 38C20 20 40 20 58 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          {/* Right content - Experience badge */}
-          <div className="lg:justify-self-start">
-            <div className="text-left lg:text-left">
-              <div className="flex justify-center lg:justify-start mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <div className="text-2xl md:text-3xl font-bold text-black text-center lg:text-left">10 Years</div>
-              <div className="text-sm text-black text-center lg:text-left">Experience</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium border-2 border-transparent">
-            Get Started
-          </Button>
-          <Button
-            variant="outline"
-            className="bg-transparent hover:bg-gray-100 text-black rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-medium border-2 border-black/20"
-          >
-            View Portfolio
+        <div className="pt-6 sm:pt-8">
+          <Button className="bg-black hover:bg-gray-800 text-white rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-normal inline-flex items-center gap-2 transition-all duration-300 ease-out border-0 hover:scale-105 hover:shadow-lg">
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            Start your project
           </Button>
         </div>
       </div>
