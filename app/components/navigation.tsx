@@ -15,7 +15,7 @@ export function Navigation() {
           className="flex items-center gap-3"
         >
           <Image 
-            src="/adot_logo.jpg" 
+            src="/adot.logo.png" 
             alt="Adot Logo" 
             width={40} 
             height={40} 
