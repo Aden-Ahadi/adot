@@ -1,10 +1,55 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useState, useEffect } from "react"
 import TextType from "@/components/TextType"
 
 export function HeroSection() {
+    const [currentProjectType, setCurrentProjectType] = useState(0)
+  const [displayText, setDisplayText] = useState("")
+  const [isTyping, setIsTyping] = useState(true)
+
+  const projectTypes = ["web-app", "mobile-app", "e-commerce", "api-service", "saas-platform"]
+
+  useEffect(() => {
+    const currentType = projectTypes[currentProjectType]
+    let timeoutId: NodeJS.Timeout
+
+    if (isTyping) {
+      // Typing animation
+      if (displayText.length < currentType.length) {
+        timeoutId = setTimeout(() => {
+          setDisplayText(currentType.slice(0, displayText.length + 1))
+        }, 100)
+      } else {
+        // Finished typing, wait then start deleting
+        timeoutId = setTimeout(() => {
+          setIsTyping(false)
+        }, 2000)
+      }
+    } else {
+      // Deleting animation
+      if (displayText.length > 0) {
+        timeoutId = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1))
+        }, 50)
+      } else {
+        // Finished deleting, move to next project type
+        setCurrentProjectType((prev) => (prev + 1) % projectTypes.length)
+        setIsTyping(true)
+      }
+    }
+
+    return () => clearTimeout(timeoutId)
+  }, [displayText, isTyping, currentProjectType, projectTypes])
+
+  const handleCodeBlockClick = () => {
+    // Handle the CTA action - could open a form, navigate, etc.
+    console.log("Starting project consultation...")
+  }
+
   return (
-    <section className="w-full min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center px-4 sm:px-6">
+    <section className="w-full min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center px-4 sm:px-6 pt-16 sm:pt-20">
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-[1.1] sm:leading-[1.05] tracking-tight">
           Get powerful digital experiences
@@ -32,11 +77,53 @@ export function HeroSection() {
           </p>
         </div>
 
-        <div className="pt-6 sm:pt-8">
-          <Button className="bg-black hover:bg-gray-800 text-white rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-normal inline-flex items-center gap-2 transition-all duration-300 ease-out border-0 hover:scale-105 hover:shadow-lg">
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            Start your project
-          </Button>
+        <div className="pt-4 sm:pt-6 flex justify-center">
+          <div
+            onClick={handleCodeBlockClick}
+            className="bg-gray-900 rounded-lg p-4 sm:p-6 lg:p-8 max-w-xl lg:max-w-4xl xl:max-w-5xl w-full cursor-pointer group border border-gray-700"
+          >
+            {/* Code editor header */}
+            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-700">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-gray-400 text-sm ml-4 font-mono">project.js</span>
+            </div>
+
+            {/* Code content */}
+            <div className="text-left font-mono text-sm sm:text-base">
+              <div className="text-gray-500 mb-2">// Let's build something amazing together</div>
+              <div className="flex flex-wrap items-center gap-1">
+                <span className="text-purple-400">const</span>
+                <span className="text-blue-300">project</span>
+                <span className="text-white">=</span>
+                <span className="text-yellow-300">{"{"}</span>
+              </div>
+              <div className="ml-4 sm:ml-6 my-2">
+                <div className="flex flex-wrap items-center gap-1">
+                  <span className="text-green-300">idea:</span>
+                  <span className="text-orange-300">"</span>
+                  <span className="text-orange-300">{displayText}</span>
+                  <span className="text-orange-300 animate-pulse">|</span>
+                  <span className="text-orange-300">",</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1 mt-1">
+                  <span className="text-green-300">execution:</span>
+                  <span className="text-orange-300">"ours"</span>
+                </div>
+              </div>
+              <div className="text-yellow-300">{"}"}</div>
+
+              {/* Interactive prompt */}
+              <div className="mt-4 pt-4 border-t border-gray-700">
+                <div className="text-gray-400 text-xs sm:text-sm">
+                  <span className="text-green-400">→</span> Click to start your project consultation
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
