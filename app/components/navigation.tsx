@@ -1,11 +1,26 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open')
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.classList.remove('menu-open')
+      document.body.style.overflow = 'auto'
+    }
+
+    return () => {
+      document.body.classList.remove('menu-open')
+      document.body.style.overflow = 'auto'
+    }
+  }, [isMenuOpen])
 
   return (
     <nav className="sticky top-0 z-50 w-full px-4 sm:px-6 py-2 sm:py-3 backdrop-blur-lg bg-white/20">
@@ -65,11 +80,18 @@ export function Navigation() {
         </div>
 
         <button
-          className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105"
+          className="md:hidden p-2 hover:bg-black/5 rounded-xl transition-all duration-300 ease-out group"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <div className="relative w-5 h-5">
+            <Menu className={`w-5 h-5 absolute transition-all duration-300 ease-out ${
+              isMenuOpen ? 'rotate-90 opacity-0 scale-75' : 'rotate-0 opacity-100 scale-100'
+            }`} />
+            <X className={`w-5 h-5 absolute transition-all duration-300 ease-out ${
+              isMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-75'
+            }`} />
+          </div>
         </button>
       </div>
 
@@ -77,24 +99,13 @@ export function Navigation() {
         <>
           {/* Backdrop overlay */}
           <div 
-            className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40 animate-in fade-in duration-300"
+            className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm supports-[backdrop-filter]:backdrop-blur-sm z-40 animate-in fade-in duration-200"
             onClick={() => setIsMenuOpen(false)}
           />
           
           {/* Menu dropdown */}
-          <div className="md:hidden absolute top-full right-4 mt-2 w-72 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-50 animate-in slide-in-from-top-3 fade-in duration-300 ease-out">
-            {/* Close button */}
-            <div className="flex justify-end p-4 pb-2">
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 hover:rotate-90"
-                aria-label="Close menu"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            
-            <div className="px-6 pb-6 space-y-1">
+          <div className="mobile-menu md:hidden absolute top-full right-4 mt-3 w-72 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-50 animate-in slide-in-from-top-2 fade-in duration-200 ease-out">
+            <div className="p-6 space-y-1">
               <a
                 href="#"
                 className="flex items-center text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 py-3 px-4 rounded-xl hover:translate-x-1 group"

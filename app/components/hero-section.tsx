@@ -49,7 +49,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="w-full min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center px-4 sm:px-6 pt-16 sm:pt-20">
+    <section className="w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-2 sm:pt-14">
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-[1.1] sm:leading-[1.05] tracking-tight">
           Get powerful digital experiences
@@ -83,7 +83,7 @@ export function HeroSection() {
             className="bg-gray-900 rounded-lg p-4 sm:p-6 lg:p-8 max-w-xl lg:max-w-4xl xl:max-w-5xl w-full cursor-pointer group border border-gray-700"
           >
             {/* Code editor header */}
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-700">
+            <div className="flex items-center gap-2 mb-2 pb-3 border-b border-gray-700">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
