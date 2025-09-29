@@ -52,20 +52,40 @@ export function HeroSection() {
     <section className="w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-2 sm:pt-14">
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-[1.1] sm:leading-[1.05] tracking-tight">
-          Get powerful digital experiences
-          <br />
-          your customers{" "}
-          <TextType 
-            text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
-            as="span"
-            typingSpeed={100}
-            pauseDuration={2000}
-            showCursor={true}
-            cursorCharacter="|"
-            loop={true}
-            className="inline !text-black font-normal"
-            style={{ color: '#000000' }}
-          />.
+          <span className="block sm:inline">Get powerful digital</span>
+          <span className="block sm:inline"> experiences</span>
+          <span className="hidden sm:inline">
+            <br />
+          </span>
+          <span className="block sm:inline">your customers</span>
+          <span className="block sm:hidden min-h-[1.2em]">
+            <TextType 
+              text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
+              as="span"
+              typingSpeed={100}
+              pauseDuration={2000}
+              showCursor={true}
+              cursorCharacter="|"
+              loop={true}
+              className="inline !text-black font-normal"
+              style={{ color: '#000000' }}
+            />
+          </span>
+          <span className="hidden sm:inline">{" "}
+            <TextType 
+              text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
+              as="span"
+              typingSpeed={100}
+              pauseDuration={2000}
+              showCursor={true}
+              cursorCharacter="|"
+              loop={true}
+              className="inline !text-black font-normal"
+              style={{ color: '#000000' }}
+            />
+          </span>
+          <span className="hidden sm:inline">.</span>
+          <span className="block sm:hidden">.</span>
         </h1>
 
         <div className="space-y-1 max-w-xl mx-auto px-2 sm:px-0">
