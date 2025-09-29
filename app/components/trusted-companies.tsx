@@ -3,14 +3,8 @@
 import { useEffect, useState } from "react"
 
 const companies = [
-  { name: "Microsoft", logo: "/placeholder.svg?height=40&width=120&text=Microsoft" },
-  { name: "Google", logo: "/placeholder.svg?height=40&width=120&text=Google" },
-  { name: "Amazon", logo: "/placeholder.svg?height=40&width=120&text=Amazon" },
-  { name: "Meta", logo: "/placeholder.svg?height=40&width=120&text=Meta" },
-  { name: "Netflix", logo: "/placeholder.svg?height=40&width=120&text=Netflix" },
-  { name: "Spotify", logo: "/placeholder.svg?height=40&width=120&text=Spotify" },
-  { name: "Airbnb", logo: "/placeholder.svg?height=40&width=120&text=Airbnb" },
-  { name: "Uber", logo: "/placeholder.svg?height=40&width=120&text=Uber" },
+  { name: "MAT/CHAHITA", logo: "/companies/company1.png?height=40&width=120&text=MAT/CHAHITA"},
+  { name: "WhyNot Furniture", logo: "/companies/company2.png?height=40&width=120&text=Google" },
 ]
 
 export function TrustedCompanies() {
@@ -29,12 +23,12 @@ export function TrustedCompanies() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-8">
-            Trusted by industry leaders
+            Trusted by companies & organizations
           </h2>
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-2 gap-2 items-center justify-items-center">
           {companies.map((company, index) => (
             <div key={company.name} className="group transition-all duration-300 hover:scale-110">
               <img
