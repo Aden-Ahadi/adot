@@ -137,6 +137,15 @@ export default function TestimonialsSection() {
     setMousePosition({ x: event.clientX, y: event.clientY })
   }
 
+  const handleClick = (testimonialId: string) => {
+    // Toggle popup on mobile click
+    if (hoveredTestimonial === testimonialId) {
+      setHoveredTestimonial(null)
+    } else {
+      setHoveredTestimonial(testimonialId)
+    }
+  }
+
   const handleMouseMove = (event: React.MouseEvent) => {
     if (hoveredTestimonial) {
       setMousePosition({ x: event.clientX, y: event.clientY })
@@ -188,6 +197,7 @@ export default function TestimonialsSection() {
                   onMouseEnter={(e) => handleMouseEnter(testimonial.id, e)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
+                  onClick={() => handleClick(testimonial.id)}
                 >
                   <div className="relative w-full h-full cursor-pointer">
                     <div 
@@ -215,7 +225,7 @@ export default function TestimonialsSection() {
         {/* Hero Text */}
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-black leading-tight">
-            The websites behind
+            The Developers behind
           </h2>
           <p className="text-lg md:text-xl lg:text-2xl font-serif text-gray-800 mt-1">
             thousands of companies.
@@ -233,39 +243,75 @@ export default function TestimonialsSection() {
           </Button>
         </div>
 
-        {/* Testimonial Popup - Desktop only */}
+        {/* Testimonial Popup - Responsive */}
         {hoveredTestimonial && currentTestimonial && (
-          <div
-            className="hidden md:block fixed z-[70] bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-xs transition-all duration-300 pointer-events-none"
-            style={{
-              left: `${Math.min(mousePosition.x + 15, window.innerWidth - 320)}px`,
-              top: `${Math.max(mousePosition.y - 80, 20)}px`,
-            }}
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <Image
-                src={currentTestimonial.avatar}
-                alt={currentTestimonial.name}
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
-              />
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 text-sm truncate">{currentTestimonial.name}</p>
-                <p className="text-gray-500 text-xs truncate">{currentTestimonial.role}</p>
+          <>
+            {/* Desktop Popup */}
+            <div
+              className="hidden md:block fixed z-[70] bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-xs transition-all duration-300 pointer-events-none"
+              style={{
+                left: `${Math.min(mousePosition.x + 15, typeof window !== 'undefined' ? window.innerWidth - 320 : 320)}px`,
+                top: `${Math.max(mousePosition.y - 80, 20)}px`,
+              }}
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <Image
+                  src={currentTestimonial.avatar}
+                  alt={currentTestimonial.name}
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-gray-900 text-sm truncate">{currentTestimonial.name}</p>
+                  <p className="text-gray-500 text-xs truncate">{currentTestimonial.role}</p>
+                </div>
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} className={`w-3 h-3 ${i < currentTestimonial.rating ? 'text-yellow-400' : 'text-gray-200'} fill-current`} viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L0.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} className={`w-3 h-3 ${i < currentTestimonial.rating ? 'text-yellow-400' : 'text-gray-200'} fill-current`} viewBox="0 0 20 20">
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L0.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                  </svg>
-                ))}
-              </div>
+              <p className="text-gray-700 text-xs leading-relaxed line-clamp-2">
+                "{currentTestimonial.testimonial.slice(0, 120)}..."
+              </p>
             </div>
-            <p className="text-gray-700 text-xs leading-relaxed line-clamp-2">
-              "{currentTestimonial.testimonial.slice(0, 120)}..."
-            </p>
-          </div>
+
+            {/* Mobile Popup */}
+            <div className="md:hidden fixed inset-x-4 bottom-4 z-[70] bg-white rounded-lg shadow-lg border border-gray-200 p-4 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-3">
+                <Image
+                  src={currentTestimonial.avatar}
+                  alt={currentTestimonial.name}
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-gray-900 text-sm">{currentTestimonial.name}</p>
+                  <p className="text-gray-500 text-xs">{currentTestimonial.role}</p>
+                  <div className="flex items-center gap-0.5 mt-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg key={i} className={`w-3 h-3 ${i < currentTestimonial.rating ? 'text-yellow-400' : 'text-gray-200'} fill-current`} viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L0.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setHoveredTestimonial(null)}
+                  className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 flex-shrink-0"
+                >
+                  ×
+                </button>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                "{currentTestimonial.testimonial}"
+              </p>
+            </div>
+          </>
         )}
       </div>
     </section>
