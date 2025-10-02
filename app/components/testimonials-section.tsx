@@ -18,16 +18,16 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: "1",
-    name: "Amara Williams",
-    role: "Marketing Director",
-    company: "TechFlow Inc",
+    name: "Khamis Omari",
+    role: "Business Owner | whynot furniture",
+    company: "Whynot Furniture",
     avatar: "/avatars/avatar-1.jpg", // Local image path
     testimonial: "ADOT transformed our online presence completely. The website they built increased our conversions by 300% and looks absolutely stunning.",
     rating: 5
   },
   {
     id: "2",
-    name: "Marcus Johnson",
+    name: "Vivian David",
     role: "CEO",
     company: "StartupLab",
     avatar: "/avatars/avatar-2.jpg", // Local image path
@@ -165,35 +165,31 @@ export default function TestimonialsSection() {
             {generateAvatarGrid()}
           </div>
           
-          {/* Interactive avatars overlay - completely separate layer */}
-          <div className="absolute inset-0 hidden md:block pointer-events-none overflow-hidden">
+          {/* Interactive avatars overlay - visible on all devices */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {testimonials.map((testimonial, index) => {
-              // Strategic positioning for hover interactions - avoid grid positions
-              const positions = [
-                { top: '22%', left: '16%' },
-                { top: '32%', right: '24%' },
-                { top: '48%', left: '26%' },
-                { top: '58%', right: '16%' },
-                { top: '38%', left: '46%' },
-                { top: '68%', right: '36%' }
+              // Different positions for each avatar index
+              const positionClasses = [
+                'top-[20%] left-[15%] md:top-[22%] md:left-[16%]',
+                'top-[30%] right-[15%] md:top-[32%] md:right-[24%]',
+                'top-[40%] left-[10%] md:top-[48%] md:left-[26%]',
+                'top-[50%] right-[10%] md:top-[58%] md:right-[16%]',
+                'top-[35%] left-1/2 -translate-x-1/2 md:top-[38%] md:left-[46%] md:translate-x-0',
+                'top-[60%] left-1/2 -translate-x-1/2 md:top-[68%] md:right-[36%] md:left-auto md:translate-x-0'
               ]
-              const position = positions[index]
               
               return (
                 <div
                   key={testimonial.id}
-                  className="absolute pointer-events-auto"
+                  className={`absolute pointer-events-auto w-6 h-6 md:w-8 md:h-8 ${positionClasses[index]}`}
                   style={{
-                    ...position,
-                    width: '32px',
-                    height: '32px',
                     zIndex: hoveredTestimonial === testimonial.id ? 30 : 20
                   }}
                   onMouseEnter={(e) => handleMouseEnter(testimonial.id, e)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="relative w-8 h-8 cursor-pointer">
+                  <div className="relative w-full h-full cursor-pointer">
                     <div 
                       className="w-full h-full transition-transform duration-200 ease-out"
                       style={{
@@ -207,7 +203,7 @@ export default function TestimonialsSection() {
                         height={32}
                         className="w-full h-full rounded-lg border border-white shadow-sm object-cover"
                       />
-                      <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border border-white rounded-full" />
+                      <div className="absolute -top-0.5 -right-0.5 w-2 h-2 md:w-2.5 md:h-2.5 bg-green-500 border border-white rounded-full" />
                     </div>
                   </div>
                 </div>
