@@ -6,6 +6,7 @@ function Footer2() {
     { name: "Home", href: "/" },
     { name: "Services", href: "/#services" },
     { name: "Portfolio", href: "/#portfolio" },
+    { name: "Pricing", href: "/#packages" },
     { name: "Contacts", href: "/contact" },
     
   ];
@@ -71,7 +72,7 @@ function Footer2() {
     },
     {
       name: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/adot_devs?igsh=dGp4dDlzYWN5emVjA",
       svg: (
         <svg
           className="w-5 h-5"

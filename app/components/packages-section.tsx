@@ -88,7 +88,7 @@ export function PackagesSection() {
   const currentPackage = packages.find((pkg) => pkg.id === activePackage) || packages[0]
 
   return (
-    <section className="w-full bg-[#1a1a1a] py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+    <section id="packages" className="w-full bg-[#1a1a1a] py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white text-center mb-4 sm:mb-6">

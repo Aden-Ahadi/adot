@@ -96,6 +96,14 @@ export function Navigation() {
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
           <a
+            href="/#packages"
+            onClick={(e) => handleNavClick(e, '/#packages')}
+            className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
+          >
+            Pricing
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a
             href="/contact"
             className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
           >
@@ -154,6 +162,14 @@ export function Navigation() {
                 className="flex items-center text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 py-3 px-4 rounded-xl hover:translate-x-1 group"
               >
                 <span className="text-sm font-medium">Portfolio</span>
+                <span className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
+              </a>
+              <a
+                href="/#packages"
+                onClick={(e) => handleNavClick(e, '/#packages')}
+                className="flex items-center text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 py-3 px-4 rounded-xl hover:translate-x-1 group"
+              >
+                <span className="text-sm font-medium">Pricing</span>
                 <span className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
               </a>
               <a
