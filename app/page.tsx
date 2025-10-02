@@ -6,6 +6,7 @@ import { ServicesSection } from "./components/services-section";
 import { PortfolioBento } from "./components/portfolio-bento";
 import { PackagesSection } from "./components/packages-section";
 import TestimonialsSection from "./components/testimonials-section";
+import Footer2 from "./components/footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <PortfolioBento /> 
       <PackagesSection />
       <TestimonialsSection />
+      <Footer2 />
     </main>
   )
 
