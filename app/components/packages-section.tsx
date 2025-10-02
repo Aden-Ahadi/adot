@@ -36,7 +36,7 @@ const packages: Package[] = [
       "3 Revisions",
       "Delivery: 4 Days",
     ],
-    image: "/public/modern-ecommerce-dashboard.png",
+    image: "/basic.png",
     imageAlt: "Basic website package preview",
   },
   {
@@ -56,7 +56,7 @@ const packages: Package[] = [
       "5 Revisions",
       "Delivery: 10 Days",
     ],
-    image: "/public/healthcare-patient-portal.jpg",
+    image: "/standard.png",
     imageAlt: "Standard website package preview",
   },
   {
@@ -77,7 +77,7 @@ const packages: Package[] = [
       "Unlimited Revisions",
       "Delivery: 21 Days",
     ],
-    image: "/public/financial-analytics-dashboard.png",
+    image: "/premium.png",
     imageAlt: "Premium website package preview",
   },
 ]
@@ -158,36 +158,18 @@ export function PackagesSection() {
                   </div>
                 </div>
 
-                {/* Right Side - Laptop Mockup */}
+                {/* Right Side - Clean Image Display */}
                 <div
                   key={`${currentPackage.id}-image`}
                   className="relative animate-in fade-in slide-in-from-right-4 duration-500 lg:sticky lg:top-8"
                 >
-                  <div className="relative w-full aspect-[4/3] bg-[#252525] rounded-xl p-3 border border-[#333] shadow-xl">
-                    {/* Laptop Frame */}
-                    <div className="relative w-full h-full bg-black rounded-lg overflow-hidden border-2 border-[#1a1a1a]">
-                      {/* Browser Chrome */}
-                      <div className="absolute top-0 left-0 right-0 h-6 bg-[#2a2a2a] flex items-center px-2 gap-1.5 z-10">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 rounded-full bg-[#ff5f56]" />
-                          <div className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
-                          <div className="w-2 h-2 rounded-full bg-[#27c93f]" />
-                        </div>
-                      </div>
-
-                      {/* Website Preview */}
-                      <div className="absolute top-6 left-0 right-0 bottom-0">
-                        <Image
-                          src={currentPackage.image || "/placeholder.svg"}
-                          alt={currentPackage.imageAlt}
-                          fill
-                          className="object-cover object-top transition-opacity duration-500"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Laptop Base */}
-                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-[60%] h-1.5 bg-gradient-to-b from-[#2a2a2a] to-transparent rounded-b-lg" />
+                  <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image
+                      src={currentPackage.image || "/placeholder.svg"}
+                      alt={currentPackage.imageAlt}
+                      fill
+                      className="object-contain p-4 transition-opacity duration-500"
+                    />
                   </div>
                 </div>
               </div>
