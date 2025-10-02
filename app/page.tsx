@@ -4,6 +4,8 @@ import { Navigation } from "./components/navigation";
 import { TrustedCompanies } from "./components/trusted-companies";
 import { ServicesSection } from "./components/services-section";
 import { PortfolioBento } from "./components/portfolio-bento";
+import { PackagesSection } from "./components/packages-section";
+import TestimonialsSection from "./components/testimonials-section";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <TrustedCompanies />
       <ServicesSection/>
       <PortfolioBento /> 
+      <PackagesSection />
+      <TestimonialsSection />
     </main>
   )
 
