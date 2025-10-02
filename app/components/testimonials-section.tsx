@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
 interface Testimonial {
   id: string
@@ -225,18 +226,14 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-3">
-          <Button
-            className="bg-black text-white px-6 py-2.5 text-sm rounded-full font-medium hover:opacity-80 transition-opacity duration-300"
-          >
-            Start for free
-          </Button>
+        {/* CTA Button */}
+        <div className="flex justify-center">
           <Button
             variant="outline"
-            className="border border-gray-300 text-black px-6 py-2.5 text-sm rounded-full font-medium hover:bg-gray-50 transition-colors duration-300"
+            className="border border-gray-300 bg-white text-gray-900 px-6 py-2.5 text-sm rounded-full font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center gap-2 group"
           >
-            Talk to sales
+            Let's build yours
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
         </div>
 

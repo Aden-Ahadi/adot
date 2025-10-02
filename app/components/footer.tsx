@@ -3,13 +3,42 @@ import React from "react";
 
 function Footer2() {
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "Services", href: "#" },
-    { name: "Portfolio", href: "#" },
-    { name: "About", href: "#" },
-    { name: "Contacts", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/#services" },
+    { name: "Portfolio", href: "/#portfolio" },
+    { name: "Contacts", href: "/contact" },
     
   ];
+
+  const smoothScrollTo = (elementId: string) => {
+    const element = document.getElementById(elementId)
+    if (element) {
+      const headerOffset = 80 // Account for sticky navigation
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault()
+      const elementId = href.substring(2) // Remove '/#'
+      
+      // If we're not on the home page, navigate there first
+      if (window.location.pathname !== '/') {
+        window.location.href = href
+        return
+      }
+      
+      // If we're on the home page, smooth scroll to the section
+      smoothScrollTo(elementId)
+    }
+  }
 
   const socialIcons = [
     {
@@ -67,7 +96,7 @@ function Footer2() {
       />
       
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
-        <div className="mb-4 flex items-center justify-center">
+        <a href="/" className="mb-4 flex items-center justify-center hover:opacity-80 transition-opacity duration-200">
          
           <img
             src="/adot.logo.png"
@@ -87,7 +116,7 @@ function Footer2() {
               adot
             </span>
           </div>
-        </div>
+        </a>
 
         <nav className="mb-4 w-full">
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
@@ -95,6 +124,7 @@ function Footer2() {
               <li key={link.name}>
                 <a
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                                 className="text-gray-700 hover:text-gray-900 transition-colors duration-200 text-sm"
                 >
                   {link.name}
