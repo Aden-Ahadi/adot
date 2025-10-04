@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
+import { Check, Mail, AlertCircle } from "lucide-react"
 import { TrustedCompanies } from "./trusted-companies"
 
 export default function ContactPage() {
@@ -20,43 +20,85 @@ export default function ContactPage() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    // Listen for package selection events from packages section
+    const handlePackageSelection = (event: Event) => {
+      const customEvent = event as CustomEvent
+      const { packageId, packageName } = customEvent.detail
+      
+      // Pre-fill the project type based on package selection
+      setFormData(prev => ({
+        ...prev,
+        projectType: packageId === 'basic' ? 'web-app' : 
+                    packageId === 'standard' ? 'cms' : 
+                    packageId === 'premium' ? 'ecommerce' : 'other'
+      }))
+      
+      // Show a banner informing about package selection
+      setSubmitStatus('idle')
+    }
+
+    window.addEventListener('packageSelected', handlePackageSelection)
+    
+    return () => {
+      window.removeEventListener('packageSelected', handlePackageSelection)
+    }
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    
+    // Clear error messages when user starts typing
+    if (submitStatus === 'error') {
+      setSubmitStatus('idle')
+      setErrorMessage('')
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage('')
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // Here you would normally send the data to your backend
-      console.log("Form submitted:", formData)
-      
-      // Simulate successful submission
-      setSubmitStatus('success')
-      
-      // Reset form
-      setFormData({
-        email: "",
-        firstName: "",
-        lastName: "",
-        companyName: "",
-        projectType: "",
-        budget: "",
-        timeline: "",
-        phoneNumber: "",
-        projectDescription: ""
+      // Call our API endpoint
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus('success')
+        // Reset form
+        setFormData({
+          email: "",
+          firstName: "",
+          lastName: "",
+          companyName: "",
+          projectType: "",
+          budget: "",
+          timeline: "",
+          phoneNumber: "",
+          projectDescription: ""
+        })
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.error || 'Failed to send email')
+      }
       
     } catch (error) {
       console.error("Form submission error:", error)
       setSubmitStatus('error')
+      setErrorMessage('An unexpected error occurred. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -167,16 +209,34 @@ export default function ContactPage() {
           {/* Right Column - Form (Always visible, but full width on mobile) */}
           <div className="lg:col-span-1">
             <div className="bg-gray-50 p-6 rounded-xl">
-              {/* Status Messages */}
+              {/* Success Message */}
               {submitStatus === 'success' && (
                 <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-green-800 text-sm font-medium">Thank you! We've received your project inquiry and will get back to you within 24 hours.</p>
+                  <div className="flex items-start gap-2">
+                    <Mail className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-green-800 text-sm font-medium">Message sent successfully!</p>
+                      <p className="text-green-700 text-sm mt-1">We've received your project inquiry and will get back to you within 24 hours.</p>
+                    </div>
+                  </div>
                 </div>
               )}
               
+              {/* Error Message */}
               {submitStatus === 'error' && (
                 <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-800 text-sm font-medium">Oops! There was an error submitting your form. Please try again or contact us directly.</p>
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-red-800 text-sm font-medium">
+                        {errorMessage || "There was an error submitting your form"}
+                      </p>
+                      <p className="text-red-700 text-sm mt-1">
+                        Please try again or contact us directly at{" "}
+                        <a href="mailto:info@adotdevs.com" className="underline">info@adotdevs.com</a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
             
