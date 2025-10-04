@@ -2,12 +2,15 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import TextType from "@/components/TextType"
 
 export function HeroSection() {
-    const [currentProjectType, setCurrentProjectType] = useState(0)
+  const [currentProjectType, setCurrentProjectType] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const projectTypes = ["web-app", "mobile-app", "e-commerce", "api-service", "saas-platform"]
 
@@ -43,9 +46,21 @@ export function HeroSection() {
     return () => clearTimeout(timeoutId)
   }, [displayText, isTyping, currentProjectType, projectTypes])
 
-  const handleCodeBlockClick = () => {
-    // Handle the CTA action - could open a form, navigate, etc.
-    console.log("Starting project consultation...")
+  const handleCodeBlockClick = async () => {
+    if (isLoading) return
+    
+    setIsLoading(true)
+    
+    try {
+      // Add a small delay for visual feedback
+      await new Promise(resolve => setTimeout(resolve, 800))
+      
+      // Navigate to contact page
+      router.push('/contact')
+    } catch (error) {
+      console.error('Navigation error:', error)
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -100,16 +115,23 @@ export function HeroSection() {
         <div className="pt-4 sm:pt-6 flex justify-center">
           <div
             onClick={handleCodeBlockClick}
-            className="bg-gray-900 rounded-lg p-4 sm:p-6 lg:p-8 max-w-xl lg:max-w-4xl xl:max-w-5xl w-full cursor-pointer group border border-gray-700"
+            className={`bg-gray-900 rounded-lg p-4 sm:p-6 lg:p-8 max-w-xl lg:max-w-4xl xl:max-w-5xl w-full cursor-pointer group border border-gray-700 transition-all duration-300 ${
+              isLoading 
+                ? 'opacity-75 cursor-not-allowed scale-[0.98]' 
+                : 'hover:bg-gray-800 hover:border-gray-600 hover:scale-[1.01] active:scale-[0.99]'
+            }`}
+            aria-disabled={isLoading}
           >
             {/* Code editor header */}
             <div className="flex items-center gap-2 mb-2 pb-3 border-b border-gray-700">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-red-300' : 'bg-red-500'}`}></div>
+                <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-yellow-300' : 'bg-yellow-500'}`}></div>
+                <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-green-600' : 'bg-green-500'}`}></div>
               </div>
-              <span className="text-gray-400 text-sm ml-4 font-mono">project.js</span>
+              <span className={`text-gray-400 text-sm ml-4 font-mono transition-colors duration-300 ${
+                isLoading ? 'text-gray-500' : 'group-hover:text-gray-400'
+              }`}>project.js</span>
             </div>
 
             {/* Code content */}
@@ -126,7 +148,7 @@ export function HeroSection() {
                   <span className="text-green-300">idea:</span>
                   <span className="text-orange-300">"</span>
                   <span className="text-orange-300">{displayText}</span>
-                  <span className="text-orange-300 animate-pulse">|</span>
+                  <span className={`text-orange-300 ${isLoading ? 'animate-none opacity-50' : 'animate-pulse'}`}>|</span>
                   <span className="text-orange-300">",</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-1 mt-1">
@@ -138,8 +160,20 @@ export function HeroSection() {
 
               {/* Interactive prompt */}
               <div className="mt-4 pt-4 border-t border-gray-700">
-                <div className="text-gray-400 text-xs sm:text-sm">
-                  <span className="text-green-400">→</span> Click to start your project consultation
+                <div className={`text-gray-400 text-xs sm:text-sm transition-all duration-300 ${
+                  isLoading ? 'flex items-center gap-2' : 'group-hover:text-gray-300'
+                }`}>
+                  {isLoading ? (
+                    <>
+                      <div className="w-3 h-3 border-2 border-green-400 border-t-transparent rounded-full animate-spin"></div>
+                      <span>Starting consultation...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-green-400 group-hover:text-green-300 transition-colors duration-300">→ </span> 
+                      <span>Click to start your project consultation</span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

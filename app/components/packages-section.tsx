@@ -87,6 +87,25 @@ export function PackagesSection() {
 
   const currentPackage = packages.find((pkg) => pkg.id === activePackage) || packages[0]
 
+  const handlePackageSelection = (packageId: PackageTier) => {
+    setActivePackage(packageId)
+    // Could also store the selected package in localStorage for persistence
+    localStorage.setItem('selectedPackage', packageId)
+  }
+
+  const handleGetStarted = () => {
+    // Navigate to contact section and prefill package selection
+    const contactSection = document.getElementById('contact-section')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
+      // You could also dispatch a custom event to prefill the form
+      const event = new CustomEvent('packageSelected', { 
+        detail: { packageId: activePackage, packageName: currentPackage.name } 
+      })
+      window.dispatchEvent(event)
+    }
+  }
+
   return (
     <section id="packages" className="w-full bg-[#1a1a1a] py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -100,17 +119,17 @@ export function PackagesSection() {
           {packages.map((pkg) => (
             <button
               key={pkg.id}
-              onClick={() => setActivePackage(pkg.id)}
+              onClick={() => handlePackageSelection(pkg.id)}
               className={`px-6 py-2.5 rounded-full font-medium text-sm sm:text-base transition-all duration-300 ${
                 activePackage === pkg.id
                   ? "bg-[#2d7a5f] text-white shadow-lg scale-105"
-                  : "bg-[#4a4a4a] text-gray-300 hover:bg-[#5a5a5a]"
+                  : "bg-[#4a4a4a] text-gray-300 hover:bg-[#5a5a5a] hover:scale-102"
               }`}
             >
               {pkg.name}
             </button>
-          ))}
-        </div>
+        ))}
+      </div>
 
         {/* Package Content */}
         <div className="flex justify-center">
@@ -150,6 +169,7 @@ export function PackagesSection() {
                     <div className="flex justify-center">
                       <Button
                         size="sm"
+                        onClick={handleGetStarted}
                         className="bg-[#2d7a5f] hover:bg-[#236349] text-white text-sm font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                       >
                         I NEED THIS

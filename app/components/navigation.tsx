@@ -110,6 +110,13 @@ export function Navigation() {
             Contact
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
+          <a
+            href="/#contact-section"
+            onClick={(e) => handleNavClick(e, '/#contact-section')}
+            className="relative text-xs lg:text-sm font-normal text-white bg-black px-4 py-2 rounded-lg transition-all duration-300 ease-out hover:bg-gray-800 hover:scale-105"
+          >
+            Get Quote
+          </a>
       
         </div>
 

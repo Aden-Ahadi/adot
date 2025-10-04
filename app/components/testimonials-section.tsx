@@ -236,6 +236,17 @@ export default function TestimonialsSection() {
         <div className="flex justify-center">
           <Button
             variant="outline"
+            onClick={() => {
+              // Navigate to contact section
+              const contactSection = document.getElementById('contact-section')
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' })
+              } else {
+                // If no contact section, navigate to packages section
+                const packagesSection = document.getElementById('packages')
+                packagesSection?.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
             className="border border-gray-300 bg-white text-gray-900 px-6 py-2.5 text-sm rounded-full font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center gap-2 group"
           >
             Let's build yours

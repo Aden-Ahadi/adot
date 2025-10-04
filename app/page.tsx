@@ -6,6 +6,7 @@ import { ServicesSection } from "./components/services-section";
 import { PortfolioBento } from "./components/portfolio-bento";
 import { PackagesSection } from "./components/packages-section";
 import TestimonialsSection from "./components/testimonials-section";
+import ContactPage from "./components/contact-page";
 import Footer2 from "./components/footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <PortfolioBento /> 
       <PackagesSection />
       <TestimonialsSection />
+      <ContactPage />
       <Footer2 />
     </main>
   )

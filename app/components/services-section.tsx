@@ -232,6 +232,29 @@ const services = [
 
 export function ServicesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [selectedService, setSelectedService] = useState<number | null>(null)
+
+  const handleServiceClick = (index: number) => {
+    setSelectedService(index)
+  }
+
+  const handleDiscussProject = () => {
+    // Navigate to contact section
+    const contactSection = document.getElementById('contact-section')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // If no contact section, navigate to packages section
+      const packagesSection = document.getElementById('packages')
+      packagesSection?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const handleCloseModal = () => {
+    setSelectedService(null)
+  }
+
+  const selectedServiceData = selectedService !== null ? services[selectedService] : null
 
   return (
     <section id="services" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50/30">
@@ -249,11 +272,12 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="group relative"
+              className="group relative cursor-pointer"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => handleServiceClick(index)}
             >
-              <div className="bg-white rounded-xl p-6 h-full border border-gray-100 transition-all duration-500 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-0.5">
+              <div className="bg-white rounded-xl p-6 h-full border border-gray-100 transition-all duration-500 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 hover:border-gray-200">
                 {/* Icon */}
                 <div className="mb-4">
                   <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
@@ -308,7 +332,10 @@ export function ServicesSection() {
         {/* Bottom CTA */}
         <div className="text-center mt-12 sm:mt-16">
           <p className="text-sm sm:text-base text-gray-600 mb-6">Don't see what you're looking for?</p>
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white text-sm rounded-lg font-medium transition-all duration-300 hover:bg-gray-900 hover:scale-105 hover:shadow-lg">
+          <button 
+            onClick={handleDiscussProject}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white text-sm rounded-lg font-medium transition-all duration-300 hover:bg-gray-900 hover:scale-105 hover:shadow-lg"
+          >
             Let's discuss your project
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -316,6 +343,106 @@ export function ServicesSection() {
           </button>
         </div>
       </div>
+
+      {/* Service Detail Modal */}
+      {selectedServiceData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+          <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center text-white">
+                  <div className="w-6 h-6">
+                    {selectedServiceData.icon}
+                  </div>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">{selectedServiceData.title}</h2>
+              </div>
+              <button
+                onClick={handleCloseModal}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+              {/* Service Description */}
+              <div>
+                <p className="text-gray-600 leading-relaxed text-lg">{selectedServiceData.description}</p>
+              </div>
+
+              {/* Technologies */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Capabilities & Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedServiceData.technologies.map((tech, index) => {
+                    const colors = techColors[tech] || {
+                      bg: "bg-gray-100",
+                      text: "text-gray-700",
+                      hoverBg: "group-hover:bg-black",
+                      hoverText: "group-hover:text-white",
+                    }
+                    return (
+                      <span
+                        key={index}
+                        className={`px-4 py-2 ${colors.bg} ${colors.text} rounded-full font-medium text-sm transition-all duration-300 ${colors.hoverBg} }`}
+                      >
+                        {tech}
+                      </span>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Additional Info */}
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Why Choose This Service?</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-600 text-sm">Professional design solutions tailored to your brand</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-600 text-sm">Fast turnaround times without compromising quality</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-600 text-sm">Ongoing support and revisions until you're satisfied</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-600 text-sm">Modern technologies and best practices</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-4">
+                <button
+                  onClick={() => {
+                    handleCloseModal()
+                    handleDiscussProject()
+                  }}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium text-sm transition-colors"
+                >
+                  Get Started
+                </button>
+                <button
+                  onClick={handleCloseModal}
+                  className="flex-1 px-6 py-3 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg font-medium text-sm transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

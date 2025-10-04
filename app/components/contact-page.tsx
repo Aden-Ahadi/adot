@@ -17,16 +17,49 @@ export default function ContactPage() {
     phoneNumber: "",
     projectDescription: ""
   })
+  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Handle form submission here
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      
+      // Here you would normally send the data to your backend
+      console.log("Form submitted:", formData)
+      
+      // Simulate successful submission
+      setSubmitStatus('success')
+      
+      // Reset form
+      setFormData({
+        email: "",
+        firstName: "",
+        lastName: "",
+        companyName: "",
+        projectType: "",
+        budget: "",
+        timeline: "",
+        phoneNumber: "",
+        projectDescription: ""
+      })
+      
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const benefits = [
@@ -38,7 +71,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div id="contact-section" className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Mobile: Contact Sales Header - First */}
         <div className="lg:hidden mb-8">
@@ -134,6 +167,19 @@ export default function ContactPage() {
           {/* Right Column - Form (Always visible, but full width on mobile) */}
           <div className="lg:col-span-1">
             <div className="bg-gray-50 p-6 rounded-xl">
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-green-800 text-sm font-medium">Thank you! We've received your project inquiry and will get back to you within 24 hours.</p>
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-800 text-sm font-medium">Oops! There was an error submitting your form. Please try again or contact us directly.</p>
+                </div>
+              )}
+            
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Email */}
               <div>
@@ -315,9 +361,17 @@ export default function ContactPage() {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-md font-medium text-sm transition-colors duration-200"
+                disabled={isSubmitting}
+                className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white py-2 px-4 rounded-md font-medium text-sm transition-colors duration-200"
               >
-                Start Your Project
+                {isSubmitting ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Submitting...
+                  </div>
+                ) : (
+                  "Start Your Project"
+                )}
               </Button>
             </form>
             </div>
