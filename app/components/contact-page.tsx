@@ -345,12 +345,12 @@ export default function ContactPage() {
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white"
                 >
                   <option value="">Select Budget Range</option>
-                  <option value="under-10k">Under $10,000</option>
-                  <option value="10k-25k">$10,000 - $25,000</option>
-                  <option value="25k-50k">$25,000 - $50,000</option>
-                  <option value="50k-100k">$50,000 - $100,000</option>
-                  <option value="100k-250k">$100,000 - $250,000</option>
-                  <option value="250k-plus">$250,000+</option>
+                  <option value="under-10k">Under $500</option>
+                  <option value="10k-25k">$500 - $1,000</option>
+                  <option value="25k-50k">$1,000 - $3,000</option>
+                  <option value="50k-100k">$3,000 - $6,000</option>
+                  <option value="100k-250k">$6,000 - $10,000</option>
+                  <option value="250k-plus">$10,000+</option>
                   <option value="discuss">Let's Discuss</option>
                 </select>
               </div>
