@@ -19,7 +19,7 @@ export function TrustedCompanies() {
   }, [])
 
   return (
-    <section className="py-1 md:py-24 bg-gray-50/50">
+    <section className="py-12 md:py-24 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-8">
