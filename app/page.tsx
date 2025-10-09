@@ -17,7 +17,7 @@ export default function Home() {
       <Script id="ld-json-home" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
+          "@type": "Organization.",
           name: "adotdevs",
           url: "https://adotdevs.com/",
           logo: "https://adotdevs.com/adot.logo.png",
