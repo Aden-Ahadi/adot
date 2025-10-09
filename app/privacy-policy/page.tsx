@@ -1,5 +1,17 @@
 import { Navigation } from "../components/navigation"
 import Footer2 from "../components/footer"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read adotdevs' privacy practices and how we protect your data.",
+  alternates: { canonical: "https://adotdevs.com/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy | adotdevs",
+    description: "Read adotdevs' privacy practices and how we protect your data.",
+    url: "https://adotdevs.com/privacy-policy",
+  },
+};
 
 export default function PrivacyPolicy() {
   return (
@@ -60,8 +72,8 @@ export default function PrivacyPolicy() {
             <h2 className="text-xl font-medium text-gray-900 mb-4">5. Contact Us</h2>
             <p className="text-gray-600">
               If you have any questions about this Privacy Policy, please contact us at{" "}
-              <a href="mailto:privacy@adot.dev" className="text-indigo-600 hover:text-indigo-700 underline">
-                privacy@adot.dev
+              <a href="mailto:adotdevs@gmail.com" className="text-indigo-600 hover:text-indigo-700 underline">
+                adotdevs@gmail.com
               </a>
             </p>
           </section>

@@ -1,5 +1,17 @@
 import { Navigation } from "../components/navigation"
 import Footer2 from "../components/footer"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Review adotdevs' terms and conditions governing our services.",
+  alternates: { canonical: "https://adotdevs.com/terms-of-service" },
+  openGraph: {
+    title: "Terms of Service | adotdevs",
+    description: "Review adotdevs' terms and conditions governing our services.",
+    url: "https://adotdevs.com/terms-of-service",
+  },
+};
 
 export default function TermsOfService() {
   return (
@@ -62,8 +74,8 @@ export default function TermsOfService() {
             <h2 className="text-xl font-medium text-gray-900 mb-4">6. Contact Information</h2>
             <p className="text-gray-600">
               For questions about these Terms of Service, contact us at{" "}
-              <a href="mailto:legal@adot.dev" className="text-indigo-600 hover:text-indigo-700 underline">
-                legal@adot.dev
+              <a href="mailto:adotdevs@gmail.com" className="text-indigo-600 hover:text-indigo-700 underline">
+                adotdevs@gmail.com
               </a>
             </p>
           </section>
