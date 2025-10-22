@@ -10,6 +10,7 @@ import { PackagesSection } from "./components/packages-section";
 import TestimonialsSection from "./components/testimonials-section";
 import ContactPage from "./components/contact-page";
 import Footer2 from "./components/footer";
+import { FloatingWhatsApp } from "./components/floating-whatsapp";
 
 export default function Home() {
   return (
@@ -41,6 +42,7 @@ export default function Home() {
       <TestimonialsSection />
       <ContactPage />
       <Footer2 />
+      <FloatingWhatsApp />
     </main>
   )
 

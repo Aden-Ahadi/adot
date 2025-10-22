@@ -64,7 +64,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-2 sm:pt-14">
+    <section className="w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-16 sm:pt-14">
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-[1.1] sm:leading-[1.05] tracking-tight">
           <span className="block sm:inline">Get powerful digital</span>
