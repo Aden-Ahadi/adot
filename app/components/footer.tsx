@@ -114,7 +114,7 @@ function Footer2() {
             <div className="absolute bottom-1 right-1 w-1 h-1 bg-gray-400 rounded-full"></div>
             
             <span className="text-sm font-mono tracking-[0.2em] text-white uppercase font-medium">
-              adot
+              adotdevs
             </span>
           </div>
         </a>
