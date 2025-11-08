@@ -244,12 +244,12 @@ export function ServicesSection() {
   }
 
   return (
-    <section id="services" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50/30">
+    <section id="services" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-3 sm:mb-4 text-balance">What we build</h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black dark:text-white mb-3 sm:mb-4 text-balance">What we build</h2>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-pretty">
             From concept to deployment, we craft digital solutions that drive your business forward
           </p>
         </div>
@@ -264,10 +264,10 @@ export function ServicesSection() {
               onMouseLeave={() => setHoveredIndex(null)}
               onClick={handleServiceClick}
             >
-              <div className="bg-white rounded-xl p-6 h-full border border-gray-100 transition-all duration-500 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 hover:border-gray-200">
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 h-full border border-white/20 dark:border-gray-700/50 transition-all duration-500 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-white/10 hover:-translate-y-1 hover:border-white/30 dark:hover:border-gray-600/70">
                 {/* Icon */}
                 <div className="mb-4">
-                  <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <div className="w-12 h-12 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                     <div className="w-6 h-6">
                       {service.icon}
                     </div>
@@ -276,11 +276,11 @@ export function ServicesSection() {
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <h3 className="text-lg font-medium text-black group-hover:text-gray-900 transition-colors">
+                  <h3 className="text-lg font-medium text-black dark:text-white group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm text-gray-600 leading-relaxed text-pretty">{service.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-pretty">{service.description}</p>
 
                   {/* Technologies */}
                   <div className="pt-2">
@@ -307,7 +307,7 @@ export function ServicesSection() {
 
                 {/* Hover indicator */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-1 group-hover:translate-x-0">
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
@@ -318,10 +318,10 @@ export function ServicesSection() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-12 sm:mt-16">
-          <p className="text-sm sm:text-base text-gray-600 mb-6">Don't see what you're looking for?</p>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">Don't see what you're looking for?</p>
           <button 
             onClick={handleDiscussProject}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white text-sm rounded-lg font-medium transition-all duration-300 hover:bg-gray-900 hover:scale-105 hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-sm rounded-lg font-medium transition-all duration-300 hover:bg-gray-900 dark:hover:bg-gray-100 hover:scale-105 hover:shadow-lg"
           >
             Let's discuss your project
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

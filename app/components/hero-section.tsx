@@ -66,7 +66,7 @@ export function HeroSection() {
   return (
     <section className="w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-16 sm:pt-14">
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-[1.1] sm:leading-[1.05] tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black dark:text-white leading-[1.1] sm:leading-[1.05] tracking-tight">
           <span className="block sm:inline">Get powerful digital</span>
           <span className="block sm:inline"> experiences</span>
           <span className="hidden sm:inline">
@@ -82,8 +82,7 @@ export function HeroSection() {
               showCursor={true}
               cursorCharacter="|"
               loop={true}
-              className="inline !text-black font-normal"
-              style={{ color: '#000000' }}
+              className="inline !text-black dark:!text-white font-normal"
             />
           </span>
           <span className="hidden sm:inline">{" "}
@@ -95,8 +94,7 @@ export function HeroSection() {
               showCursor={true}
               cursorCharacter="|"
               loop={true}
-              className="inline !text-black font-normal"
-              style={{ color: '#000000' }}
+              className="inline !text-black dark:!text-white font-normal"
             />
           </span>
           <span className="hidden sm:inline">.</span>
@@ -104,10 +102,10 @@ export function HeroSection() {
         </h1>
 
         <div className="space-y-1 max-w-xl mx-auto px-2 sm:px-0">
-          <p className="text-sm sm:text-base md:text-lg text-black/80 font-normal">
+          <p className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-normal">
             We craft innovative software, web, and mobile solutions,
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-black/80 font-normal">
+          <p className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-normal">
             you focus on growing your business.
           </p>
         </div>
@@ -115,15 +113,15 @@ export function HeroSection() {
         <div className="pt-4 sm:pt-6 flex justify-center">
           <div
             onClick={handleCodeBlockClick}
-            className={`bg-gray-900 rounded-lg p-4 sm:p-6 lg:p-8 max-w-xl lg:max-w-4xl xl:max-w-5xl w-full cursor-pointer group border border-gray-700 transition-all duration-300 ${
+            className={`bg-gray-900 dark:bg-gray-800 rounded-lg p-4 sm:p-6 lg:p-8 max-w-xl lg:max-w-4xl xl:max-w-5xl w-full cursor-pointer group border border-gray-700 dark:border-gray-600 transition-all duration-300 ${
               isLoading 
                 ? 'opacity-75 cursor-not-allowed scale-[0.98]' 
-                : 'hover:bg-gray-800 hover:border-gray-600 hover:scale-[1.01] active:scale-[0.99]'
+                : 'hover:bg-gray-800 dark:hover:bg-gray-700 hover:border-gray-600 dark:hover:border-gray-500 hover:scale-[1.01] active:scale-[0.99]'
             }`}
             aria-disabled={isLoading}
           >
             {/* Code editor header */}
-            <div className="flex items-center gap-2 mb-2 pb-3 border-b border-gray-700">
+            <div className="flex items-center gap-2 mb-2 pb-3 border-b border-gray-700 dark:border-gray-600">
               <div className="flex gap-2">
                 <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-red-300' : 'bg-red-500'}`}></div>
                 <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-yellow-300' : 'bg-yellow-500'}`}></div>
@@ -159,7 +157,7 @@ export function HeroSection() {
               <div className="text-yellow-300">{"}"}</div>
 
               {/* Interactive prompt */}
-              <div className="mt-4 pt-4 border-t border-gray-700">
+              <div className="mt-4 pt-4 border-t border-gray-700 dark:border-gray-600">
                 <div className={`text-gray-400 text-xs sm:text-sm transition-all duration-300 ${
                   isLoading ? 'flex items-center gap-2' : 'group-hover:text-gray-300'
                 }`}>

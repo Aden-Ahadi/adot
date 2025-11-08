@@ -107,10 +107,10 @@ export function PackagesSection() {
   }
 
   return (
-    <section id="packages" className="w-full bg-[#1a1a1a] py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+    <section id="packages" className="w-full py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white text-center mb-4 sm:mb-6">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white dark:text-white text-center mb-4 sm:mb-6 drop-shadow-lg">
           Website Design Packages
         </h2>
 
@@ -122,8 +122,8 @@ export function PackagesSection() {
               onClick={() => handlePackageSelection(pkg.id)}
               className={`px-6 py-2.5 rounded-full font-medium text-sm sm:text-base transition-all duration-300 ${
                 activePackage === pkg.id
-                  ? "bg-[#2d7a5f] text-white shadow-lg scale-105"
-                  : "bg-[#4a4a4a] text-gray-300 hover:bg-[#5a5a5a] hover:scale-102"
+                  ? "bg-[#2d7a5f] dark:bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-[#4a4a4a] dark:bg-gray-700 text-gray-300 dark:text-gray-300 hover:bg-[#5a5a5a] dark:hover:bg-gray-600 hover:scale-102"
               }`}
             >
               {pkg.name}
@@ -134,14 +134,14 @@ export function PackagesSection() {
         {/* Package Content */}
         <div className="flex justify-center">
           <div className="w-full max-w-5xl">
-            <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-2xl p-4 lg:p-6 border border-[#333] shadow-2xl">
+            <div className="relative bg-gradient-to-br from-[#1a1a1a]/90 dark:from-gray-900/90 to-[#0f0f0f]/90 dark:to-gray-950/90 backdrop-blur-md rounded-2xl p-4 lg:p-6 border border-[#333]/50 dark:border-gray-700/50 shadow-2xl">
               {/* Decorative gradient border */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2d7a5f]/20 via-transparent to-[#2d7a5f]/20 opacity-50 blur-sm"></div>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2d7a5f]/20 dark:from-green-600/20 via-transparent to-[#2d7a5f]/20 dark:to-green-600/20 opacity-50 blur-sm"></div>
               
               <div className="relative grid lg:grid-cols-2 gap-4 lg:gap-6 items-start">
                 {/* Left Side - Package Details */}
                 <div key={currentPackage.id} className="animate-in fade-in slide-in-from-left-4 duration-500">
-                  <div className="bg-[#252525] rounded-xl p-4 lg:p-5 border border-[#333] h-full">
+                  <div className="bg-[#252525]/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 lg:p-5 border border-[#333]/50 dark:border-gray-700/50 h-full">
                     <h3 className="text-xl lg:text-2xl font-medium text-white mb-3">{currentPackage.title}</h3>
 
                     <div className="mb-4">
@@ -183,7 +183,7 @@ export function PackagesSection() {
                   key={`${currentPackage.id}-image`}
                   className="relative animate-in fade-in slide-in-from-right-4 duration-500 lg:sticky lg:top-8"
                 >
-                  <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden shadow-xl border border-gray-200">
+                  <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-gray-50 dark:from-gray-800 to-gray-100 dark:to-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
                     <Image
                       src={currentPackage.image || "/placeholder.svg"}
                       alt={currentPackage.imageAlt}

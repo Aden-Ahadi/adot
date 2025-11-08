@@ -19,10 +19,10 @@ export function TrustedCompanies() {
   }, [])
 
   return (
-    <section className="py-12 md:py-24 bg-gray-50/50">
+    <section className="py-12 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-8">
+          <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-8">
             Trusted by companies & organizations
           </h2>
         </div>
@@ -70,7 +70,7 @@ export function TrustedCompanies() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-gray-800 w-6" : "bg-gray-300 hover:bg-gray-400"
+                  index === currentIndex ? "bg-gray-800 dark:bg-gray-200 w-6" : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
                 }`}
               />
             ))}

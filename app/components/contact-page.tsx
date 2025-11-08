@@ -113,14 +113,14 @@ export default function ContactPage() {
   ]
 
   return (
-    <div id="contact-section" className="min-h-screen bg-white">
+    <div id="contact-section" className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Mobile: Contact Sales Header - First */}
         <div className="lg:hidden mb-8">
-          <h1 className="text-3xl font-medium text-gray-900 mb-4">
+          <h1 className="text-3xl font-medium text-gray-900 dark:text-white mb-4">
             Contact sales
           </h1>
-          <p className="text-base text-gray-600 leading-relaxed mb-6">
+          <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
             We can provide you with a custom demo, help you select the perfect development package, or offer technical consultation to ensure your project exceeds expectations and drives real business growth.
           </p>
 
@@ -128,14 +128,14 @@ export default function ContactPage() {
           <div className="space-y-3 mb-6">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-start gap-2">
-                <Check className="w-4 h-4 text-indigo-600 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-700">{benefit}</span>
+                <Check className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-700 dark:text-gray-300">{benefit}</span>
               </div>
             ))}
           </div>
 
-          <p className="text-sm text-gray-600">
-            Need technical support? <a href="#" className="text-indigo-600 hover:text-indigo-700 underline">click here</a>. Or, connect with our team of developers in the <a href="#" className="text-indigo-600 hover:text-indigo-700 underline">ADOT Developer Account</a>.
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Need technical support? <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">click here</a>. Or, connect with our team of developers in the <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">ADOT Developer Account</a>.
           </p>
         </div>
 
@@ -144,10 +144,10 @@ export default function ContactPage() {
           <div className="hidden lg:block space-y-8">
             {/* Header Section */}
             <div>
-              <h1 className="text-3xl lg:text-4xl font-medium text-gray-900 mb-4">
+              <h1 className="text-3xl lg:text-4xl font-medium text-gray-900 dark:text-white mb-4">
                 Contact sales
               </h1>
-              <p className="text-base text-gray-600 leading-relaxed mb-6">
+              <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                 We can provide you with a custom demo, help you select the perfect development package, or offer technical consultation to ensure your project exceeds expectations and drives real business growth.
               </p>
 
@@ -155,45 +155,45 @@ export default function ContactPage() {
               <div className="space-y-3">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-indigo-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-gray-700">{benefit}</span>
+                    <Check className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">{benefit}</span>
                   </div>
                 ))}
               </div>
 
-              <p className="text-sm text-gray-600 mt-6">
-                Need technical support? <a href="#" className="text-indigo-600 hover:text-indigo-700 underline">click here</a>. Or, connect with our team of developers in the <a href="https://www.instagram.com/adot_devs?igsh=dGp4dDlzYWN5emVj" className="text-indigo-600 hover:text-indigo-700 underline">ADOT Developer Account</a>.
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-6">
+                Need technical support? <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">click here</a>. Or, connect with our team of developers in the <a href="https://www.instagram.com/adot_devs?igsh=dGp4dDlzYWN5emVj" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">ADOT Developer Account</a>.
               </p>
             </div>
 
             {/* ROI Statistics - Desktop */}
             <div>
-              <h2 className="text-2xl font-medium text-gray-900 mb-6">
+              <h2 className="text-2xl font-medium text-gray-900 dark:text-white mb-6">
                 Drive Results with ADOT
               </h2>
               
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 mb-1">3x</div>
-                  <p className="text-xs text-gray-600">
+                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">3x</div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     faster development cycles with our proven frameworks
                   </p>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 mb-1">40%</div>
-                  <p className="text-xs text-gray-600">
+                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">40%</div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     reduction in development costs through efficient processes
                   </p>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 mb-1">99.9%</div>
-                  <p className="text-xs text-gray-600">
+                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">99.9%</div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     uptime achieved with our enterprise-grade infrastructure
                   </p>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 mb-1">50+</div>
-                  <p className="text-xs text-gray-600">
+                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">50+</div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     successful projects delivered across various industries
                   </p>
                 </div>
@@ -208,7 +208,7 @@ export default function ContactPage() {
 
           {/* Right Column - Form (Always visible, but full width on mobile) */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-50 p-6 rounded-xl">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-gray-700/50">
               {/* Success Message */}
               {submitStatus === 'success' && (
                 <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -243,7 +243,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Email*
                 </label>
                 <input
@@ -253,14 +253,14 @@ export default function ContactPage() {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
               {/* First and Last Name */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="firstName" className="block text-xs font-medium text-gray-700 mb-1">
+                  <label htmlFor="firstName" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     First name*
                   </label>
                   <input
@@ -270,11 +270,11 @@ export default function ContactPage() {
                     required
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-xs font-medium text-gray-700 mb-1">
+                  <label htmlFor="lastName" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Last name*
                   </label>
                   <input
@@ -284,14 +284,14 @@ export default function ContactPage() {
                     required
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
                 </div>
               </div>
 
               {/* Company Name */}
               <div>
-                <label htmlFor="companyName" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="companyName" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Company name*
                 </label>
                 <input
@@ -301,13 +301,13 @@ export default function ContactPage() {
                   required
                   value={formData.companyName}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
               {/* Project Type */}
               <div>
-                <label htmlFor="projectType" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="projectType" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Project Type*
                 </label>
                 <select
@@ -316,7 +316,7 @@ export default function ContactPage() {
                   required
                   value={formData.projectType}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select Project Type</option>
                   <option value="web-app">Web Application</option>
@@ -333,7 +333,7 @@ export default function ContactPage() {
 
               {/* Budget Range */}
               <div>
-                <label htmlFor="budget" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="budget" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Budget Range*
                 </label>
                 <select
@@ -342,7 +342,7 @@ export default function ContactPage() {
                   required
                   value={formData.budget}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select Budget Range</option>
                   <option value="under-10k">Under $500</option>
@@ -357,7 +357,7 @@ export default function ContactPage() {
 
               {/* Timeline */}
               <div>
-                <label htmlFor="timeline" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="timeline" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Expected Timeline*
                 </label>
                 <select
@@ -366,7 +366,7 @@ export default function ContactPage() {
                   required
                   value={formData.timeline}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select Timeline</option>
                   <option value="asap">ASAP</option>
@@ -380,7 +380,7 @@ export default function ContactPage() {
 
               {/* Phone Number */}
               <div>
-                <label htmlFor="phoneNumber" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="phoneNumber" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Phone number
                 </label>
                 <input
@@ -389,13 +389,13 @@ export default function ContactPage() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
               {/* Project Description */}
               <div>
-                <label htmlFor="projectDescription" className="block text-xs font-medium text-gray-700 mb-1">
+                <label htmlFor="projectDescription" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Tell us about your project*
                 </label>
                 <textarea
@@ -406,16 +406,16 @@ export default function ContactPage() {
                   value={formData.projectDescription}
                   onChange={handleInputChange}
                   placeholder="Describe your project goals, key features, technical requirements, or any specific challenges you're facing..."
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors resize-none"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                 />
               </div>
 
               {/* Terms and Privacy */}
-              <div className="text-xs text-gray-600">
+              <div className="text-xs text-gray-600 dark:text-gray-400">
                 ADOT values your privacy and will use the contact information you provide to discuss our software development services and solutions. You may unsubscribe from these communications at any time. By submitting your information, you agree to ADOT's{" "}
-                <a href="/terms-of-service" className="text-indigo-600 hover:text-indigo-700 underline">Terms of Service</a>{" "}
+                <a href="/terms-of-service" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">Terms of Service</a>{" "}
                 and{" "}
-                <a href="/privacy-policy" className="text-indigo-600 hover:text-indigo-700 underline">Privacy Policy</a>.
+                <a href="/privacy-policy" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">Privacy Policy</a>.
               </div>
 
               {/* Submit Button */}
@@ -440,32 +440,32 @@ export default function ContactPage() {
 
         {/* Mobile: ROI Statistics - Third */}
         <div className="lg:hidden mt-12">
-          <h2 className="text-2xl font-medium text-gray-900 mb-6">
+          <h2 className="text-2xl font-medium text-gray-900 dark:text-white mb-6">
             Drive Results with ADOT
           </h2>
           
           <div className="grid grid-cols-2 gap-6 mb-8">
             <div>
-              <div className="text-4xl font-bold text-indigo-600 mb-1">3x</div>
-              <p className="text-xs text-gray-600">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">3x</div>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
                 faster development cycles with our proven frameworks
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 mb-1">40%</div>
-              <p className="text-xs text-gray-600">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">40%</div>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
                 reduction in development costs through efficient processes
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 mb-1">99.9%</div>
-              <p className="text-xs text-gray-600">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">99.9%</div>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
                 uptime achieved with our enterprise-grade infrastructure
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 mb-1">50+</div>
-              <p className="text-xs text-gray-600">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">50+</div>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
                 successful projects delivered across various industries
               </p>
             </div>

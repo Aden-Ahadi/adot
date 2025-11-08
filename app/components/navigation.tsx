@@ -3,9 +3,27 @@
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import { useTheme } from "next-themes"
+import { ThemeToggle } from "./theme-toggle"
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { theme, systemTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [logoError, setLogoError] = useState(false)
+
+  // Determine the current theme (accounting for system theme)
+  const currentTheme = theme === 'system' ? systemTheme : theme
+  const isDark = currentTheme === 'dark'
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Reset logo error when theme changes
+  useEffect(() => {
+    setLogoError(false)
+  }, [currentTheme])
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -54,78 +72,97 @@ export function Navigation() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full px-4 sm:px-6 py-2 sm:py-3 backdrop-blur-lg bg-white/20">
+    <nav className="sticky top-0 z-50 w-full px-4 sm:px-6 py-2 sm:py-3 backdrop-blur-md bg-white/30 dark:bg-black/30 border-b border-white/20 dark:border-white/10">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a 
           href="/" 
           className="flex items-center gap-3"
         >
-          <Image 
-            src="/adot.logo.png" 
-            alt="Adot Logo" 
-            width={40} 
-            height={40} 
-            className="h-8 w-auto sm:h-10"
-            priority
-          />
-          <span className="text-lg sm:text-xl font-bold text-black tracking-tight">ADOTDEVS</span>
+          {mounted ? (
+            <Image 
+              src={logoError ? "/adot.logo.png" : (isDark ? "/adot.logo.dark.png" : "/adot.logo.light.png")} 
+              alt="Adot Logo" 
+              width={40} 
+              height={40} 
+              className="h-8 w-auto sm:h-10"
+              priority
+              onError={() => {
+                // Fallback to default logo if theme-specific logo doesn't exist
+                setLogoError(true)
+              }}
+            />
+          ) : (
+            <Image 
+              src="/adot.logo.png" 
+              alt="Adot Logo" 
+              width={40} 
+              height={40} 
+              className="h-8 w-auto sm:h-10"
+              priority
+            />
+          )}
+          <span className="text-lg sm:text-xl font-bold text-black dark:text-white tracking-tight">ADOTDEVS</span>
         </a>
 
         <div className="hidden md:flex items-center gap-5 lg:gap-6">
           <a
             href="/"
-            className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
+            className="relative text-xs lg:text-sm font-normal text-black dark:text-white transition-all duration-300 ease-out hover:scale-105 group"
           >
             Home
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
           <a
             href="/#services"
             onClick={(e) => handleNavClick(e, '/#services')}
-            className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
+            className="relative text-xs lg:text-sm font-normal text-black dark:text-white transition-all duration-300 ease-out hover:scale-105 group"
           >
             Services
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
           <a
             href="/#portfolio"
             onClick={(e) => handleNavClick(e, '/#portfolio')}
-            className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
+            className="relative text-xs lg:text-sm font-normal text-black dark:text-white transition-all duration-300 ease-out hover:scale-105 group"
           >
             Portfolio
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
           <a
             href="/#packages"
             onClick={(e) => handleNavClick(e, '/#packages')}
-            className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
+            className="relative text-xs lg:text-sm font-normal text-black dark:text-white transition-all duration-300 ease-out hover:scale-105 group"
           >
             Pricing
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
           <a
             href="/contact"
-            className="relative text-xs lg:text-sm font-normal text-black transition-all duration-300 ease-out hover:scale-105 group"
+            className="relative text-xs lg:text-sm font-normal text-black dark:text-white transition-all duration-300 ease-out hover:scale-105 group"
           >
             Contact
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 ease-out group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
+          <ThemeToggle />
         </div>
 
-        <button
-          className="md:hidden p-2 hover:bg-black/5 rounded-xl transition-all duration-300 ease-out group"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="relative w-5 h-5">
-            <Menu className={`w-5 h-5 absolute transition-all duration-300 ease-out ${
-              isMenuOpen ? 'rotate-90 opacity-0 scale-75' : 'rotate-0 opacity-100 scale-100'
-            }`} />
-            <X className={`w-5 h-5 absolute transition-all duration-300 ease-out ${
-              isMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-75'
-            }`} />
-          </div>
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-xl transition-all duration-300 ease-out group"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="relative w-5 h-5">
+              <Menu className={`w-5 h-5 absolute transition-all duration-300 ease-out text-black dark:text-white ${
+                isMenuOpen ? 'rotate-90 opacity-0 scale-75' : 'rotate-0 opacity-100 scale-100'
+              }`} />
+              <X className={`w-5 h-5 absolute transition-all duration-300 ease-out text-black dark:text-white ${
+                isMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-75'
+              }`} />
+            </div>
+          </button>
+        </div>
       </div>
 
       {isMenuOpen && (

@@ -88,13 +88,6 @@ function Footer2() {
 
   return (
     <footer className="w-full relative py-8 px-4 sm:px-6 lg:px-8">
-      {/* Radial Gradient Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background: "radial-gradient(125% 125% at 50% 10%, #fff 40%, #6366f1 100%)",
-        }}
-      />
       
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
         <a href="/" className="mb-4 flex items-center justify-center hover:opacity-80 transition-opacity duration-200">
@@ -106,14 +99,14 @@ function Footer2() {
             height={32}
             className="mr-2 rounded-md"
           />
-          <div className="relative bg-black px-3 py-1.5 rounded-sm border border-gray-700">
+          <div className="relative bg-black dark:bg-white px-3 py-1.5 rounded-sm border border-gray-700 dark:border-gray-300">
             {/* Corner dots */}
-            <div className="absolute top-1 left-1 w-1 h-1 bg-gray-400 rounded-full"></div>
-            <div className="absolute top-1 right-1 w-1 h-1 bg-gray-400 rounded-full"></div>
-            <div className="absolute bottom-1 left-1 w-1 h-1 bg-gray-400 rounded-full"></div>
-            <div className="absolute bottom-1 right-1 w-1 h-1 bg-gray-400 rounded-full"></div>
+            <div className="absolute top-1 left-1 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
+            <div className="absolute top-1 right-1 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
+            <div className="absolute bottom-1 left-1 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
+            <div className="absolute bottom-1 right-1 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
             
-            <span className="text-sm font-mono tracking-[0.2em] text-white uppercase font-medium">
+            <span className="text-sm font-mono tracking-[0.2em] text-white dark:text-black uppercase font-medium">
               adotdevs
             </span>
           </div>
@@ -126,7 +119,7 @@ function Footer2() {
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                                className="text-gray-700 hover:text-gray-900 transition-colors duration-200 text-sm"
+                                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 text-sm"
                 >
                   {link.name}
                 </a>
@@ -142,7 +135,7 @@ function Footer2() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={icon.name}
-              className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200"
               href={icon.href}
             >
               <div>
@@ -152,7 +145,7 @@ function Footer2() {
           ))}
         </div>
 
-        <p className="text-center text-xs text-gray-600">
+        <p className="text-center text-xs text-gray-600 dark:text-gray-400">
           &copy; {new Date().getFullYear()} ADOT. All rights reserved.
         </p>
       </div>

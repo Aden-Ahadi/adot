@@ -52,11 +52,11 @@ export function PortfolioBento() {
   }
 
   return (
-    <section id="portfolio" className="py-16 sm:py-20 bg-gray-50">
+    <section id="portfolio" className="py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black tracking-tight">Latest Projects</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black dark:text-white tracking-tight">Latest Projects</h2>
         </div>
 
         {/* Projects Grid */}
@@ -64,7 +64,7 @@ export function PortfolioBento() {
           {projects.map((project) => (
             <Card
               key={project.id}
-              className="group relative overflow-hidden bg-white border border-gray-200 hover:shadow-lg hover:shadow-black/10 transition-all duration-300 rounded-xl hover:-translate-y-1"
+              className="group relative overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700/50 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-white/10 transition-all duration-300 rounded-xl hover:-translate-y-1"
             >
               {/* Project Image - Full Width */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -77,13 +77,13 @@ export function PortfolioBento() {
 
               {/* Project Info */}
               <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-medium text-black mb-1 tracking-tight">
+                <h3 className="text-lg sm:text-xl font-medium text-black dark:text-white mb-1 tracking-tight">
                   {project.title}
                 </h3>
-                <p className="text-sm text-gray-600">{project.category}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{project.category}</p>
                 
                 {/* Additional Info */}
-                <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
+                <div className="mt-3 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                   <span>{project.duration}</span>
                   <span>{project.team}</span>
                 </div>
@@ -96,7 +96,7 @@ export function PortfolioBento() {
         <div className="flex justify-center">
           <button 
             onClick={handleViewProjects}
-            className="group inline-flex items-center gap-2 px-6 py-3 bg-black hover:bg-gray-900 text-white rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="group inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white hover:bg-gray-900 dark:hover:bg-gray-100 text-white dark:text-black rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             VIEW PROJECTS
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

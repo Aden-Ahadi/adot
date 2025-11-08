@@ -159,7 +159,7 @@ export default function TestimonialsSection() {
   const currentTestimonial = testimonials.find(t => t.id === hoveredTestimonial)
 
   return (
-    <section className="w-full bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section className="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="max-w-[900px] mx-auto relative">
         {/* Avatar Collage */}
         <div className="relative mb-12 overflow-hidden">
@@ -224,10 +224,10 @@ export default function TestimonialsSection() {
 
         {/* Hero Text */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-black leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-black dark:text-white leading-tight">
             The Developers behind
           </h2>
-          <p className="text-lg md:text-xl lg:text-2xl font-serif text-gray-800 mt-1">
+          <p className="text-lg md:text-xl lg:text-2xl font-serif text-gray-800 dark:text-gray-200 mt-1">
             thousands of companies.
           </p>
         </div>
@@ -247,7 +247,7 @@ export default function TestimonialsSection() {
                 packagesSection?.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="border border-gray-300 bg-white text-gray-900 px-6 py-2.5 text-sm rounded-full font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center gap-2 group"
+            className="border border-white/30 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md text-gray-900 dark:text-white px-6 py-2.5 text-sm rounded-full font-medium hover:bg-white/90 dark:hover:bg-gray-700/90 transition-colors duration-300 flex items-center gap-2 group"
           >
             Let's build yours
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -259,7 +259,7 @@ export default function TestimonialsSection() {
           <>
             {/* Desktop Popup */}
             <div
-              className="hidden md:block fixed z-[70] bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-xs transition-all duration-300 pointer-events-none"
+              className="hidden md:block fixed z-[70] bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-lg shadow-lg border border-white/20 dark:border-gray-700/50 p-4 max-w-xs transition-all duration-300 pointer-events-none"
               style={{
                 left: `${Math.min(mousePosition.x + 15, typeof window !== 'undefined' ? window.innerWidth - 320 : 320)}px`,
                 top: `${Math.max(mousePosition.y - 80, 20)}px`,
@@ -274,8 +274,8 @@ export default function TestimonialsSection() {
                   className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 text-sm truncate">{currentTestimonial.name}</p>
-                  <p className="text-gray-500 text-xs truncate">{currentTestimonial.role}</p>
+                  <p className="font-medium text-gray-900 dark:text-white text-sm truncate">{currentTestimonial.name}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs truncate">{currentTestimonial.role}</p>
                 </div>
                 <div className="flex items-center gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -285,13 +285,13 @@ export default function TestimonialsSection() {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-xs leading-relaxed line-clamp-2">
+              <p className="text-gray-700 dark:text-gray-300 text-xs leading-relaxed line-clamp-2">
                 "{currentTestimonial.testimonial.slice(0, 120)}..."
               </p>
             </div>
 
             {/* Mobile Popup */}
-            <div className="md:hidden fixed inset-x-4 bottom-4 z-[70] bg-white rounded-lg shadow-lg border border-gray-200 p-4 transition-all duration-300">
+            <div className="md:hidden fixed inset-x-4 bottom-4 z-[70] bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-lg shadow-lg border border-white/20 dark:border-gray-700/50 p-4 transition-all duration-300">
               <div className="flex items-center gap-3 mb-3">
                 <Image
                   src={currentTestimonial.avatar}
@@ -301,11 +301,11 @@ export default function TestimonialsSection() {
                   className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 text-sm">{currentTestimonial.name}</p>
-                  <p className="text-gray-500 text-xs">{currentTestimonial.role}</p>
+                  <p className="font-medium text-gray-900 dark:text-white text-sm">{currentTestimonial.name}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">{currentTestimonial.role}</p>
                   <div className="flex items-center gap-0.5 mt-1">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <svg key={i} className={`w-3 h-3 ${i < currentTestimonial.rating ? 'text-yellow-400' : 'text-gray-200'} fill-current`} viewBox="0 0 20 20">
+                      <svg key={i} className={`w-3 h-3 ${i < currentTestimonial.rating ? 'text-yellow-400' : 'text-gray-200 dark:text-gray-600'} fill-current`} viewBox="0 0 20 20">
                         <path d="M10 15l-5.878 3.09 1.123-6.545L0.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                       </svg>
                     ))}
@@ -313,12 +313,12 @@ export default function TestimonialsSection() {
                 </div>
                 <button 
                   onClick={() => setHoveredTestimonial(null)}
-                  className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 flex-shrink-0"
+                  className="w-6 h-6 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 flex-shrink-0"
                 >
                   ×
                 </button>
               </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                 "{currentTestimonial.testimonial}"
               </p>
             </div>
