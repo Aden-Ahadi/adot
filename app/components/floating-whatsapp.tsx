@@ -4,7 +4,7 @@ import { useState } from "react"
 
 export function FloatingWhatsApp() {
   const [isHovered, setIsHovered] = useState(false)
-  const phoneNumber = "+255747583412"
+  const phoneNumber = "+255624853412"
   const message = "Hi! I'm interested in your services. Can we discuss my project?"
 
   const handleWhatsAppClick = () => {

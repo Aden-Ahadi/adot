@@ -5,7 +5,6 @@ import { HeroSection } from "./components/hero-section";
 import { Navigation } from "./components/navigation";
 import { TrustedCompanies } from "./components/trusted-companies";
 import { ServicesSection } from "./components/services-section";
-import { PortfolioBento } from "./components/portfolio-bento";
 import { PackagesSection } from "./components/packages-section";
 import TestimonialsSection from "./components/testimonials-section";
 import ContactPage from "./components/contact-page";
@@ -37,7 +36,6 @@ export default function Home() {
       <HeroSection />
       <TrustedCompanies />
       <ServicesSection/>
-      <PortfolioBento /> 
       <PackagesSection />
       <TestimonialsSection />
       <ContactPage />
