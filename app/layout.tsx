@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "agency",
   ],
   authors: [{ name: "ADOT" }],
-  creator: "ADOT",
+  creator: "ADOT.DEV",
   openGraph: {
     type: "website",
     url: "https://adotdevs.com/",
