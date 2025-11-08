@@ -1,7 +1,25 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { useTheme } from "next-themes";
 
 function Footer2() {
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [logoError, setLogoError] = useState(false);
+
+  // Determine the current theme (accounting for system theme)
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const isDark = currentTheme === 'dark';
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Reset logo error when theme changes
+  useEffect(() => {
+    setLogoError(false);
+  }, [currentTheme]);
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/#services" },
@@ -91,14 +109,27 @@ function Footer2() {
       
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
         <a href="/" className="mb-4 flex items-center justify-center hover:opacity-80 transition-opacity duration-200">
-         
-          <img
-            src="/adot.logo.png"
-            alt="ADOT Logo"
-            width={32}
-            height={32}
-            className="mr-2 rounded-md"
-          />
+          {mounted ? (
+            <Image
+              src={logoError ? "/adot.logo.png" : (isDark ? "/adot.logo.dark.png" : "/adot.logo.light.png")}
+              alt="ADOT Logo"
+              width={32}
+              height={32}
+              className="mr-2 rounded-md"
+              onError={() => {
+                // Fallback to default logo if theme-specific logo doesn't exist
+                setLogoError(true);
+              }}
+            />
+          ) : (
+            <Image
+              src="/adot.logo.png"
+              alt="ADOT Logo"
+              width={32}
+              height={32}
+              className="mr-2 rounded-md"
+            />
+          )}
           <div className="relative bg-black dark:bg-white px-3 py-1.5 rounded-sm border border-gray-700 dark:border-gray-300">
             {/* Corner dots */}
             <div className="absolute top-1 left-1 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
