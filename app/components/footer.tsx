@@ -177,7 +177,7 @@ function Footer2() {
         </div>
 
         <p className="text-center text-xs text-gray-600 dark:text-gray-400">
-          &copy; {new Date().getFullYear()} ADOT. All rights reserved.
+          &copy; {new Date().getFullYear()} ADOTDEVS. All rights reserved.
         </p>
       </div>
     </footer>

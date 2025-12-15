@@ -1,10 +1,9 @@
 'use client'
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import TextType from "@/components/TextType"
 import PixelCard from "@/components/PixelCard"
+import { BackgroundBeamsWithCollision } from "@/components/ui/shadcn-io/background-beams-with-collision"
 
 export function HeroSection() {
   const [currentProjectType, setCurrentProjectType] = useState(0)
@@ -65,103 +64,105 @@ export function HeroSection() {
   }
 
   return (
-    <section className="w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-16 sm:pt-14">
-      <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black dark:text-white leading-[1.1] sm:leading-[1.05] tracking-tight">
-          <span className="block sm:inline">Get powerful digital</span>
-          <span className="block sm:inline"> experiences</span>
-          <span className="hidden sm:inline">
-            <br />
-          </span>
-          <span className="block sm:inline">your customers</span>
-          <span className="block sm:hidden min-h-[1.2em]">
-            <TextType 
-              text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
-              as="span"
-              typingSpeed={100}
-              pauseDuration={2000}
-              showCursor={true}
-              cursorCharacter="|"
-              loop={true}
-              className="inline !text-black dark:!text-white font-normal"
-            />
-          </span>
-          <span className="hidden sm:inline">{" "}
-            <TextType 
-              text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
-              as="span"
-              typingSpeed={100}
-              pauseDuration={2000}
-              showCursor={true}
-              cursorCharacter="|"
-              loop={true}
-              className="inline !text-black dark:!text-white font-normal"
-            />
-          </span>
-          <span className="hidden sm:inline">.</span>
-          <span className="block sm:hidden">.</span>
-        </h1>
+    <BackgroundBeamsWithCollision className="w-full min-h-dvh h-dvh flex items-center overflow-hidden">
+      <section className="relative z-10 w-full flex items-center justify-center px-4 sm:px-6 pt-12 sm:pt-10 min-h-dvh">
+        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black dark:text-white leading-[1.1] sm:leading-[1.05] tracking-tight">
+            <span className="block sm:inline">Get powerful digital</span>
+            <span className="block sm:inline"> experiences</span>
+            <span className="hidden sm:inline">
+              <br />
+            </span>
+            <span className="block sm:inline">your customers</span>
+            <span className="block sm:hidden min-h-[1.2em]">
+              <TextType 
+                text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
+                as="span"
+                typingSpeed={100}
+                pauseDuration={2000}
+                showCursor={true}
+                cursorCharacter="|"
+                loop={true}
+                className="inline !text-black dark:!text-white font-normal"
+              />
+            </span>
+            <span className="hidden sm:inline">{" "}
+              <TextType 
+                text={["love ❤️", "trust 🤝", "remember 🧠", "share 📣", "choose ✅", "enjoy ✨", "prefer 🌟", "recommend 💬"]}
+                as="span"
+                typingSpeed={100}
+                pauseDuration={2000}
+                showCursor={true}
+                cursorCharacter="|"
+                loop={true}
+                className="inline !text-black dark:!text-white font-normal"
+              />
+            </span>
+            <span className="hidden sm:inline">.</span>
+            <span className="block sm:hidden">.</span>
+          </h1>
 
-        <div className="space-y-1 max-w-xl mx-auto px-2 sm:px-0">
-          <p className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-normal">
-            We craft innovative software, web, and mobile solutions,
-          </p>
-          <p className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-normal">
-            you focus on growing your business.
-          </p>
-        </div>
+          <div className="space-y-1 max-w-xl mx-auto px-2 sm:px-0">
+            <p className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-normal">
+              We craft innovative software, web, and mobile solutions,
+            </p>
+            <p className="text-sm sm:text-base md:text-lg text-black/80 dark:text-white/80 font-normal">
+              you focus on growing your business.
+            </p>
+          </div>
 
-        <div className="pt-4 sm:pt-6 flex justify-center">
-          <div className="max-w-xl lg:max-w-4xl xl:max-w-5xl w-full">
-            <PixelCard variant="yellow" className="w-full">
-              <div className="absolute inset-0 p-4 sm:p-6">
-                {/* Code editor header */}
-                <div className="flex items-center gap-2 mb-2 pb-3 border-b border-gray-300 dark:border-gray-700">
-                  <div className="flex gap-2">
-                    <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-red-300' : 'bg-red-500'}`}></div>
-                    <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-yellow-300' : 'bg-yellow-500'}`}></div>
-                    <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-green-600' : 'bg-green-500'}`}></div>
+          <div className="pt-4 sm:pt-6 flex justify-center">
+            <div className="max-w-xl lg:max-w-4xl xl:max-w-5xl w-full">
+              <PixelCard variant="yellow" className="w-full">
+                <div className="absolute inset-0 p-4 sm:p-6">
+                  {/* Code editor header */}
+                  <div className="flex items-center gap-2 mb-2 pb-3 border-b border-gray-300 dark:border-gray-700">
+                    <div className="flex gap-2">
+                      <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-red-300' : 'bg-red-500'}`}></div>
+                      <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-yellow-300' : 'bg-yellow-500'}`}></div>
+                      <div className={`w-3 h-3 rounded-full ${isLoading ? 'bg-green-600' : 'bg-green-500'}`}></div>
+                    </div>
+                    <span className={`text-gray-700 dark:text-gray-400 text-sm ml-4 font-mono transition-colors duration-300`} >project.js</span>
                   </div>
-                  <span className={`text-gray-700 dark:text-gray-400 text-sm ml-4 font-mono transition-colors duration-300`} >project.js</span>
-                </div>
 
-                {/* Code content */}
-                <div className="text-left font-mono text-sm sm:text-base">
-                  <div className="text-gray-700 dark:text-gray-500 mb-2">// Let's build something amazing together</div>
-                  <div className="flex flex-wrap items-center gap-1">
-                    <span className="text-purple-600 dark:text-purple-400">const</span>
-                    <span className="text-blue-600 dark:text-blue-300">project</span>
-                    <span className="text-gray-800 dark:text-white">=</span>
-                    <span className="text-yellow-600 dark:text-yellow-300">{"{"}</span>
-                  </div>
-                  <div className="ml-4 sm:ml-6 my-2">
+                  {/* Code content */}
+                  <div className="text-left font-mono text-sm sm:text-base">
+                    <div className="text-gray-700 dark:text-gray-500 mb-2">// Let's build something amazing together</div>
                     <div className="flex flex-wrap items-center gap-1">
-                      <span className="text-green-600 dark:text-green-300">idea:</span>
-                      <span className="text-orange-600 dark:text-orange-300">"</span>
-                      <span className="text-orange-600 dark:text-orange-300">{displayText}</span>
-                      <span className={`text-orange-600 dark:text-orange-300 ${isLoading ? 'animate-none opacity-50' : 'animate-pulse'}`}>|</span>
-                      <span className="text-orange-600 dark:text-orange-300">",</span>
+                      <span className="text-purple-600 dark:text-purple-400">const</span>
+                      <span className="text-blue-600 dark:text-blue-300">project</span>
+                      <span className="text-gray-800 dark:text-white">=</span>
+                      <span className="text-yellow-600 dark:text-yellow-300">{"{"}</span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-1 mt-1">
-                      <span className="text-green-600 dark:text-green-300">execution:</span>
-                      <span className="text-orange-600 dark:text-orange-300">"ours"</span>
+                    <div className="ml-4 sm:ml-6 my-2">
+                      <div className="flex flex-wrap items-center gap-1">
+                        <span className="text-green-600 dark:text-green-300">idea:</span>
+                        <span className="text-orange-600 dark:text-orange-300">"</span>
+                        <span className="text-orange-600 dark:text-orange-300">{displayText}</span>
+                        <span className={`text-orange-600 dark:text-orange-300 ${isLoading ? 'animate-none opacity-50' : 'animate-pulse'}`}>|</span>
+                        <span className="text-orange-600 dark:text-orange-300">",</span>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-1 mt-1">
+                        <span className="text-green-600 dark:text-green-300">execution:</span>
+                        <span className="text-orange-600 dark:text-orange-300">"ours"</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-yellow-600 dark:text-yellow-300">{"}"}</div>
+                    <div className="text-yellow-600 dark:text-yellow-300">{"}"}</div>
 
-                  {/* Interactive prompt */}
-                  <div className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-700">
-                    <div className={`text-gray-600 dark:text-gray-400 text-xs sm:text-sm transition-all duration-300 ${
-                      isLoading ? 'flex items-center gap-2' : 'group-hover:text-gray-500 dark:group-hover:text-gray-300'
-                    }`}>
+                    {/* Interactive prompt */}
+                    <div className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-700">
+                      <div className={`text-gray-600 dark:text-gray-400 text-xs sm:text-sm transition-all duration-300 ${
+                        isLoading ? 'flex items-center gap-2' : 'group-hover:text-gray-500 dark:group-hover:text-gray-300'
+                      }`}>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </PixelCard>
+              </PixelCard>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </BackgroundBeamsWithCollision>
   )
 }
