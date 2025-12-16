@@ -1,11 +1,14 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Check, Mail, AlertCircle } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Button } from "@/components/ui/stateful-button"
+import { Check, Mail } from "lucide-react"
 import { TrustedCompanies } from "./trusted-companies"
+import { toast } from "sonner"
 
 export default function ContactPage() {
+  const formRef = useRef<HTMLFormElement>(null)
+  
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -20,7 +23,6 @@ export default function ContactPage() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     // Listen for package selection events from packages section
@@ -51,18 +53,28 @@ export default function ContactPage() {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
     
-    // Clear error messages when user starts typing
+    // Clear error status when user starts typing
     if (submitStatus === 'error') {
       setSubmitStatus('idle')
-      setErrorMessage('')
     }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    // Form validation is handled by HTML5 required attributes
+    // The actual submission is handled by handleButtonClick
+  }
+
+  const handleButtonClick = async (): Promise<void> => {
+    // Validate form before submitting
+    if (!formRef.current?.checkValidity()) {
+      formRef.current?.reportValidity()
+      toast.error('Please fill in all required fields')
+      return Promise.reject(new Error('Please fill in all required fields'))
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
-    setErrorMessage('')
 
     try {
       // Call our API endpoint
@@ -92,13 +104,21 @@ export default function ContactPage() {
         })
       } else {
         setSubmitStatus('error')
-        setErrorMessage(result.error || 'Failed to send email')
+        const errorMsg = result.error || 'Failed to send email'
+        toast.error('Submission Failed', {
+          description: errorMsg + '. Please try again or contact us directly at info@adotdevs.com',
+        })
+        throw new Error(errorMsg)
       }
       
     } catch (error) {
       console.error("Form submission error:", error)
       setSubmitStatus('error')
-      setErrorMessage('An unexpected error occurred. Please try again.')
+      const errorMsg = error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.'
+      toast.error('Submission Failed', {
+        description: errorMsg + '. Please try again or contact us directly at info@adotdevs.com',
+      })
+      throw error
     } finally {
       setIsSubmitting(false)
     }
@@ -128,14 +148,14 @@ export default function ContactPage() {
           <div className="space-y-3 mb-6">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-start gap-2">
-                <Check className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" />
+                <Check className="w-4 h-4 text-violet-600 dark:text-violet-400 mt-0.5 flex-shrink-0" />
                 <span className="text-sm text-gray-700 dark:text-gray-300">{benefit}</span>
               </div>
             ))}
           </div>
 
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Need technical support? <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">click here</a>. Or, connect with our team of developers in the <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">ADOT Developer Account</a>.
+            Need technical support? <a href="#" className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline">click here</a>. Or, connect with our team of developers in the <a href="#" className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline">ADOT Developer Account</a>.
           </p>
         </div>
 
@@ -155,14 +175,14 @@ export default function ContactPage() {
               <div className="space-y-3">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" />
+                    <Check className="w-4 h-4 text-violet-600 dark:text-violet-400 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-gray-700 dark:text-gray-300">{benefit}</span>
                   </div>
                 ))}
               </div>
 
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-6">
-                Need technical support? <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">click here</a>. Or, connect with our team of developers in the <a href="https://www.instagram.com/adot_devs?igsh=dGp4dDlzYWN5emVj" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">ADOT Developer Account</a>.
+                Need technical support? <a href="#" className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline">click here</a>. Or, connect with our team of developers in the <a href="https://www.instagram.com/adot_devs?igsh=dGp4dDlzYWN5emVj" className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline">ADOT Developer Account</a>.
               </p>
             </div>
 
@@ -174,25 +194,25 @@ export default function ContactPage() {
               
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">3x</div>
+                  <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">3x</div>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
                     faster development cycles with our proven frameworks
                   </p>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">40%</div>
+                  <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">40%</div>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
                     reduction in development costs through efficient processes
                   </p>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">99.9%</div>
+                  <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">99.9%</div>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
                     uptime achieved with our enterprise-grade infrastructure
                   </p>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">50+</div>
+                  <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">50+</div>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
                     successful projects delivered across various industries
                   </p>
@@ -221,26 +241,8 @@ export default function ContactPage() {
                   </div>
                 </div>
               )}
-              
-              {/* Error Message */}
-              {submitStatus === 'error' && (
-                <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <div className="flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-red-800 text-sm font-medium">
-                        {errorMessage || "There was an error submitting your form"}
-                      </p>
-                      <p className="text-red-700 text-sm mt-1">
-                        Please try again or contact us directly at{" "}
-                        <a href="mailto:info@adotdevs.com" className="underline">info@adotdevs.com</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               {/* Email */}
               <div>
                 <label htmlFor="email" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -253,7 +255,7 @@ export default function ContactPage() {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
@@ -270,7 +272,7 @@ export default function ContactPage() {
                     required
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -284,7 +286,7 @@ export default function ContactPage() {
                     required
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -301,7 +303,7 @@ export default function ContactPage() {
                   required
                   value={formData.companyName}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
@@ -316,7 +318,7 @@ export default function ContactPage() {
                   required
                   value={formData.projectType}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select Project Type</option>
                   <option value="web-app">Web Application</option>
@@ -342,7 +344,7 @@ export default function ContactPage() {
                   required
                   value={formData.budget}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select Budget Range</option>
                   <option value="under-10k">Under $500</option>
@@ -366,7 +368,7 @@ export default function ContactPage() {
                   required
                   value={formData.timeline}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="">Select Timeline</option>
                   <option value="asap">ASAP</option>
@@ -389,7 +391,7 @@ export default function ContactPage() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
@@ -406,32 +408,24 @@ export default function ContactPage() {
                   value={formData.projectDescription}
                   onChange={handleInputChange}
                   placeholder="Describe your project goals, key features, technical requirements, or any specific challenges you're facing..."
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-colors resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                 />
               </div>
 
               {/* Terms and Privacy */}
               <div className="text-xs text-gray-600 dark:text-gray-400">
                 ADOT values your privacy and will use the contact information you provide to discuss our software development services and solutions. You may unsubscribe from these communications at any time. By submitting your information, you agree to ADOT's{" "}
-                <a href="/terms-of-service" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">Terms of Service</a>{" "}
+                <a href="/terms-of-service" className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline">Terms of Service</a>{" "}
                 and{" "}
-                <a href="/privacy-policy" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline">Privacy Policy</a>.
+                <a href="/privacy-policy" className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline">Privacy Policy</a>.
               </div>
 
               {/* Submit Button */}
               <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white py-2 px-4 rounded-md font-medium text-sm transition-colors duration-200"
+                onClick={handleButtonClick}
+                className="w-full bg-violet-600 hover:bg-violet-700 text-white py-2 px-4 rounded-md font-medium text-sm transition-colors duration-200"
               >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Submitting...
-                  </div>
-                ) : (
-                  "Start Your Project"
-                )}
+                Start Your Project
               </Button>
             </form>
             </div>
@@ -446,25 +440,25 @@ export default function ContactPage() {
           
           <div className="grid grid-cols-2 gap-6 mb-8">
             <div>
-              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">3x</div>
+              <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">3x</div>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 faster development cycles with our proven frameworks
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">40%</div>
+              <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">40%</div>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 reduction in development costs through efficient processes
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">99.9%</div>
+              <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">99.9%</div>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 uptime achieved with our enterprise-grade infrastructure
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">50+</div>
+              <div className="text-4xl font-bold text-violet-600 dark:text-violet-400 mb-1">50+</div>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 successful projects delivered across various industries
               </p>
