@@ -267,7 +267,7 @@ export function ServicesSection() {
               <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 h-full border border-white/20 dark:border-gray-700/50 transition-all duration-500 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-white/10 hover:-translate-y-1 hover:border-white/30 dark:hover:border-gray-600/70">
                 {/* Icon */}
                 <div className="mb-4">
-                  <div className="w-12 h-12 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <div className="w-12 h-12 bg-violet-600 dark:bg-violet-600 rounded-lg flex items-center justify-center text-white dark:text-black transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                     <div className="w-6 h-6">
                       {service.icon}
                     </div>
@@ -289,7 +289,7 @@ export function ServicesSection() {
                         const colors = techColors[tech] || {
                           bg: "bg-gray-100",
                           text: "text-gray-700",
-                          hoverBg: "group-hover:bg-black",
+                          hoverBg: "group-hover:bg-violet-600",
                           hoverText: "group-hover:text-white",
                         }
                         return (
@@ -321,7 +321,7 @@ export function ServicesSection() {
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">Don't see what you're looking for?</p>
           <button 
             onClick={handleDiscussProject}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-sm rounded-lg font-medium transition-all duration-300 hover:bg-gray-900 dark:hover:bg-gray-100 hover:scale-105 hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 dark:bg-violet-600 text-white dark:text-black text-sm rounded-lg font-medium transition-all duration-300 hover:bg-violet-600 dark:hover:bg-violet-600 hover:scale-105 hover:shadow-lg"
           >
             Let's discuss your project
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
