@@ -4,6 +4,7 @@ import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Timeline } from "@/components/ui/timeline"
+import { PinContainer } from "@/components/ui/3d-pin"
 
 type PackageTier = "basic" | "standard" | "premium"
 
@@ -134,24 +135,21 @@ export function PackagesSection() {
             ))}
           </div>
 
-          <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-gray-50 dark:from-gray-800 to-gray-100 dark:to-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-            <Image
-              src={pkg.image || "/placeholder.svg"}
-              alt={pkg.imageAlt}
-              fill
-              className="object-contain p-4"
-            />
+          <div className="flex items-center justify-center">
+            <PinContainer
+              title="I NEED THIS"
+              href="#contact-section"
+              containerClassName="h-[20rem] w-full flex items-center justify-center"
+              className="relative w-[20rem] h-[16rem] rounded-xl overflow-hidden bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500"
+            >
+              <Image
+                src={pkg.image || "/placeholder.svg"}
+                alt={pkg.imageAlt}
+                fill
+                className="object-cover"
+              />
+            </PinContainer>
           </div>
-        </div>
-
-        <div className="flex justify-center">
-          <Button
-            size="sm"
-            onClick={() => handleGetStarted(pkg.id, pkg.name)}
-            className="bg-violet-600 hover:bg-violet-900 dark:bg-violet-600 dark:hover:bg-violet-900 text-white text-sm font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            I NEED THIS
-          </Button>
         </div>
       </div>
     ),
